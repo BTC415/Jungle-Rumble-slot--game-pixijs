@@ -54,7 +54,7 @@ const BetHistory = () => {
 
             <div style={{ display: 'flex', alignItems: 'center', maxWidth: '1000px', margin: '0 auto'  }}>
                 <a onClick={() => window.history.back()} style={{ cursor: 'pointer', padding: '12px' }}>&larr;</a>
-                <h1>Bet Info Detail</h1>
+                <h1>Bet History</h1>
             </div>
             <div style={{ height: '600px', maxWidth: '1000px', margin: '0 auto' }}>
 

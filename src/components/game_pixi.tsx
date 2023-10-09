@@ -137,7 +137,7 @@ const GamePIXI = () => {
     })
     scroll_bar_sprite.position.set(1600, scroll_bar_init_y)
     appStage.addChild(info_dialog_wrapper)
-    function handleMouseWheel(e) {
+    function handleMouseWheel(e: WheelEvent) {
       const deltaY = e.deltaY;
       info_content_sprite.y -= deltaY * 0.5;
       if (info_content_sprite.y > 0) info_content_sprite.y = 0
@@ -427,7 +427,7 @@ const GamePIXI = () => {
 
     appStage.addChild(bline_wrapper)
 
-    const spaceKey = keyboard(" ")
+    const spaceKey: any = keyboard(" ")
     spaceKey.press = startPlay;
 
     let cur_timing_counter = 0
@@ -546,7 +546,7 @@ const GamePIXI = () => {
         // }
       }
     }
-    app.ticker.add((delta) => {
+    app.ticker.add(() => {
       for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
         r.blur.blurX = (r.position - r.previousPosition) * 1;
@@ -593,7 +593,7 @@ const GamePIXI = () => {
   }
 
 
-  app.ticker.add((delta) => {
+  app.ticker.add(() => {
     const now = Date.now();
     const remove = [];
     for (let i = 0; i < tweening.length; i++) {

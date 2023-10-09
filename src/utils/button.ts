@@ -1,4 +1,4 @@
-import { PIXI, appStage } from "../renderer";
+import { PIXI } from "../renderer";
 import {Button} from "@pixi/ui"
 
 const container = new PIXI.Container();
