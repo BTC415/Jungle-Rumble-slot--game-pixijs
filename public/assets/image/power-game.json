@@ -1,0 +1,995 @@
+{
+	"frames": {
+		"power-game-00.gif": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-01.gif": {
+			"frame": {
+				"x": 369,
+				"y": 1,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-02.gif": {
+			"frame": {
+				"x": 737,
+				"y": 1,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-03.gif": {
+			"frame": {
+				"x": 1,
+				"y": 71,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-04.gif": {
+			"frame": {
+				"x": 369,
+				"y": 71,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-05.gif": {
+			"frame": {
+				"x": 737,
+				"y": 71,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-06.gif": {
+			"frame": {
+				"x": 1,
+				"y": 141,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-07.gif": {
+			"frame": {
+				"x": 369,
+				"y": 141,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-08.gif": {
+			"frame": {
+				"x": 737,
+				"y": 141,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-09.gif": {
+			"frame": {
+				"x": 1,
+				"y": 211,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-10.gif": {
+			"frame": {
+				"x": 369,
+				"y": 211,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-11.gif": {
+			"frame": {
+				"x": 737,
+				"y": 211,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-12.gif": {
+			"frame": {
+				"x": 1,
+				"y": 281,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-13.gif": {
+			"frame": {
+				"x": 369,
+				"y": 281,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-14.gif": {
+			"frame": {
+				"x": 737,
+				"y": 281,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-15.gif": {
+			"frame": {
+				"x": 1,
+				"y": 351,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-16.gif": {
+			"frame": {
+				"x": 369,
+				"y": 351,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-17.gif": {
+			"frame": {
+				"x": 737,
+				"y": 351,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-18.gif": {
+			"frame": {
+				"x": 1,
+				"y": 421,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-19.gif": {
+			"frame": {
+				"x": 369,
+				"y": 421,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-20.gif": {
+			"frame": {
+				"x": 737,
+				"y": 421,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-21.gif": {
+			"frame": {
+				"x": 1,
+				"y": 491,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-22.gif": {
+			"frame": {
+				"x": 369,
+				"y": 491,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-23.gif": {
+			"frame": {
+				"x": 737,
+				"y": 491,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-24.gif": {
+			"frame": {
+				"x": 1,
+				"y": 561,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-25.gif": {
+			"frame": {
+				"x": 369,
+				"y": 561,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-26.gif": {
+			"frame": {
+				"x": 737,
+				"y": 561,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-27.gif": {
+			"frame": {
+				"x": 1,
+				"y": 631,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-28.gif": {
+			"frame": {
+				"x": 369,
+				"y": 631,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-29.gif": {
+			"frame": {
+				"x": 737,
+				"y": 631,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-30.gif": {
+			"frame": {
+				"x": 1,
+				"y": 701,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-31.gif": {
+			"frame": {
+				"x": 369,
+				"y": 701,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-32.gif": {
+			"frame": {
+				"x": 737,
+				"y": 701,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-33.gif": {
+			"frame": {
+				"x": 1,
+				"y": 771,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-34.gif": {
+			"frame": {
+				"x": 369,
+				"y": 771,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-35.gif": {
+			"frame": {
+				"x": 737,
+				"y": 771,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-36.gif": {
+			"frame": {
+				"x": 1,
+				"y": 841,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-37.gif": {
+			"frame": {
+				"x": 369,
+				"y": 841,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-38.gif": {
+			"frame": {
+				"x": 737,
+				"y": 841,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-39.gif": {
+			"frame": {
+				"x": 1,
+				"y": 911,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-40.gif": {
+			"frame": {
+				"x": 369,
+				"y": 911,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-41.gif": {
+			"frame": {
+				"x": 737,
+				"y": 911,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-42.gif": {
+			"frame": {
+				"x": 1,
+				"y": 981,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-43.gif": {
+			"frame": {
+				"x": 369,
+				"y": 981,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-44.gif": {
+			"frame": {
+				"x": 737,
+				"y": 981,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-45.gif": {
+			"frame": {
+				"x": 1,
+				"y": 1051,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-46.gif": {
+			"frame": {
+				"x": 369,
+				"y": 1051,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-47.gif": {
+			"frame": {
+				"x": 737,
+				"y": 1051,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		},
+		"power-game-48.gif": {
+			"frame": {
+				"x": 1105,
+				"y": 1,
+				"w": 366,
+				"h": 68
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 366,
+				"h": 68
+			},
+			"sourceSize": {
+				"w": 366,
+				"h": 68
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "power-game.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1472,
+			"h": 1120
+		},
+		"scale": "1"
+	}
+}
