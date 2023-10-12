@@ -1,0 +1,35 @@
+{
+	"frames": {
+		"card-wild-anim-1.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 250,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 250,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 250,
+				"h": 250
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "card-wild-anim.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 252,
+			"h": 252
+		},
+		"scale": "1"
+	}
+}

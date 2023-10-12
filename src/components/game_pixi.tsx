@@ -5,12 +5,12 @@ import { PIXI, app, appStage, flags } from '../renderer';
 import { loop } from '../system';
 import keyboard from '../utils/keyboard';
 import { getInfoMask, getReelContainerMask } from '../utils/mask';
-import { assetUrls, backout, lerp, show_dialog, slotTextureUrls, tweenTo, tweening } from '../utils/urls';
+import { assetUrls, backout, lerp, show_dialog, slotAnimateUrls, tweenTo, tweening } from '../utils/urls';
 import { getInputSprite } from '../utils/input';
-import { bubble_animate, fire_animate } from '../utils/utils';
+import { bubble_animate, fire_animate, gen_card_animated_sprite } from '../utils/utils';
 import { getSliderSprite } from '../utils/slider';
 import { getCheckSprite } from '../utils/check';
-import { winTextStyle } from '../config';
+import { App_Dimension, winTextStyle } from '../config';
 import { pay_elems } from '../config/pay';
 
 let won_lines:
@@ -27,7 +27,7 @@ const GamePIXI = () => {
     if (flags.loaded) {
       // onAssetsLoaded()
     } else {
-      PIXI.Assets.load([...assetUrls, ...slotTextureUrls]).then(() => {
+      PIXI.Assets.load(assetUrls).then(() => {
         appStage.alpha = 0
         return new Promise((resolve) => {
           setTimeout(() => resolve("Go"), 100);
@@ -38,11 +38,33 @@ const GamePIXI = () => {
   const navigate = useNavigate()
   async function onAssetsLoaded() {
     console.log('onAssetsLoaded')
-    const slotTextures = slotTextureUrls.map(url => PIXI.Texture.from(url))
     flags.loaded = true;
     tweenTo(appStage, 'alpha', 0, 1, 1000, backout(1), null, null)
     appStage.removeChildren();
+
+
+
+
+
+    // const background_bg_sprite = new PIXI.Graphics()
+    // background_bg_sprite.filters = [new PIXI.BlurFilter(30, 10)]
+    // appStage.addChild(background_bg_sprite)
+    // background_bg_sprite.lineStyle(0);
+    // background_bg_sprite.beginFill(0x2222ff, 0.1);
+    // background_bg_sprite.moveTo(0, -850);
+    // background_bg_sprite.lineTo(1920, -850);
+    // background_bg_sprite.lineTo(1920, 2000);
+    // background_bg_sprite.lineTo(0, 2000);
+
+
+
+
+
+
+
+
     const backgroundSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/background.png'))
+    backgroundSprite.position.set(-100, -100)
     appStage.addChild(backgroundSprite);
 
     fire_animate()
@@ -61,12 +83,14 @@ const GamePIXI = () => {
     for (let i = 0; i < 5; i++) {
       const reel = new PIXI.Container();
       reel.x = i * 265
-      const symbols: PIXI.Sprite[] = []
+      const animated_symbols: PIXI.Container[] = []
       const cards: PIXI.Container[] = []
+      const card_backs: PIXI.Sprite[] = []
       const url_ids: number[] = []
       const reelItem = {
         reel,
-        symbols,
+        animated_symbols,
+        card_backs,
         cards,
         url_ids,
         position: 0,
@@ -76,18 +100,21 @@ const GamePIXI = () => {
       for (let j = 0; j < 4; j++) {
         const cardSprite = new PIXI.Container();
         const cardBackSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/card-back.png'))
-        let url_id = Math.floor(Math.random() * slotTextures.length)
+        let url_id = Math.floor(Math.random() * slotAnimateUrls.length)
         let compens_arr: number[] = []
         if (i == 0) compens_arr = [1, 2]
         if (i == 1 || i == 4) compens_arr = [0, 1, 2]
-        while (compens_arr.includes(url_id)) url_id = Math.floor(Math.random() * slotTextures.length)
-        const cardSymbolSprite = new PIXI.Sprite(slotTextures[url_id])
-        cardSymbolSprite.position.set(10, 0)
+        while (compens_arr.includes(url_id)) url_id = Math.floor(Math.random() * slotAnimateUrls.length)
+        const cardSymbolWrapperSprite = new PIXI.Container()
+        const cardSymbolSprite = gen_card_animated_sprite(slotAnimateUrls[url_id])
+        cardSymbolWrapperSprite.addChild(cardSymbolSprite)
+        cardSymbolWrapperSprite.position.set(10, 0)
         cardSprite.addChild(cardBackSprite)
-        cardSprite.addChild(cardSymbolSprite)
+        card_backs.push(cardBackSprite)
+        cardSprite.addChild(cardSymbolWrapperSprite)
         cardSprite.y = 260 * j
         reel.addChild(cardSprite)
-        reelItem.symbols.push(cardSymbolSprite)
+        reelItem.animated_symbols.push(cardSymbolWrapperSprite)
         reelItem.url_ids.push(url_id)
         reelItem.cards.push(cardSprite)
       }
@@ -106,17 +133,35 @@ const GamePIXI = () => {
     const scroll_bar_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/scroll-bar.png'))
     const close_button_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-close.png'))
     const info_bg_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/info-bg.png'))
+
+
+
+    const info_bg_sprite_back = new PIXI.Graphics()
+    info_bg_sprite.addChild(info_bg_sprite_back)
+    info_bg_sprite_back.lineStyle(0);
+    info_bg_sprite_back.beginFill(0x222222, 1);
+    info_bg_sprite_back.moveTo(-2000, -1000);
+    info_bg_sprite_back.lineTo(4000, -1000);
+    info_bg_sprite_back.lineTo(4000, 3000);
+    info_bg_sprite_back.lineTo(-2000, 3000);
+
+
+
+
+
+
+
     const info_content_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/info-content.png'))
     const info_bg_sprite_mask = getInfoMask()
-    info_content_sprite.mask = info_bg_sprite_mask
+    // info_content_sprite.mask = info_bg_sprite_mask
     info_dialog_wrapper.addChild(info_bg_sprite)
     info_dialog_wrapper.addChild(info_content_sprite)
-    info_dialog_wrapper.addChild(info_bg_sprite_mask)
+    // info_dialog_wrapper.addChild(info_bg_sprite_mask)
     info_dialog_wrapper.addChild(scroll_bar_sprite)
     info_dialog_wrapper.addChild(close_button_sprite)
     const setting_footer_sprite = new PIXI.Graphics()
-    setting_footer_sprite.filters = [new PIXI.BlurFilter(30, 10)]
-    info_dialog_wrapper.addChild(setting_footer_sprite)
+    setting_footer_sprite.filters = [new PIXI.BlurFilter(10, 10)]
+    // info_dialog_wrapper.addChild(setting_footer_sprite)
     setting_footer_sprite.lineStyle(0);
     setting_footer_sprite.beginFill(0x222222, 1);
     setting_footer_sprite.moveTo(0, 850);
@@ -136,7 +181,14 @@ const GamePIXI = () => {
       close_button_sprite.eventMode = 'none';
     })
     scroll_bar_sprite.position.set(1600, scroll_bar_init_y)
-    appStage.addChild(info_dialog_wrapper)
+
+    app.stage.addChild(info_dialog_wrapper);
+    (flags.info_dialog_wrapper_resize_callback = function () {
+      const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height)
+      info_dialog_wrapper.scale.set(APP_SCALE)
+      info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
+      // info_dialog_wrapper.y = (app.screen.height - App_Dimension.height * APP_SCALE) / 2
+    })()
     function handleMouseWheel(e: WheelEvent) {
       const deltaY = e.deltaY;
       info_content_sprite.y -= deltaY * 0.5;
@@ -212,12 +264,40 @@ const GamePIXI = () => {
       tweenTo(info_help_group.scale, 'y', 1, 0, 500, backout(1), null, null)
     })
 
-    const setting_wrapper = new PIXI.Container()
-    setting_wrapper.position.set(500, 100)
-    setting_wrapper.alpha = 0
-    appStage.addChild(setting_wrapper)
+    const setting_modal_wrapper = new PIXI.Container()
+    setting_modal_wrapper.alpha = 0
+    setting_modal_wrapper.position.set(2000, 0)
+    appStage.addChild(setting_modal_wrapper)
+    setting_modal_wrapper.eventMode = 'static';
+    const bg_modal_sprite = new PIXI.Graphics()
+    bg_modal_sprite.eventMode = 'static'
+    bg_modal_sprite.cursor = 'pointer';
+    bg_modal_sprite.on('pointerdown', (event) => {
+      if (event.target === bg_modal_sprite) {
+        tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null);
+        tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
+      }
+    });
+    setting_modal_wrapper.addChild(bg_modal_sprite)
+    bg_modal_sprite.lineStyle(0);
+    bg_modal_sprite.beginFill(0x222222, 0.01);
+    bg_modal_sprite.moveTo(0, 0);
+    bg_modal_sprite.lineTo(1920, 0);
+    bg_modal_sprite.lineTo(1920, 960);
+    bg_modal_sprite.lineTo(0, 960);
+
+
+
+
+    const setting_modal = new PIXI.Container()
+    // setting_modal.interactiveChildren = false
+    setting_modal_wrapper.addChild(setting_modal)
+
+
+
+    setting_modal.position.set(500, 100)
     const bg_setting_sprite = new PIXI.Graphics()
-    setting_wrapper.addChild(bg_setting_sprite)
+    setting_modal.addChild(bg_setting_sprite)
     bg_setting_sprite.lineStyle(0);
     bg_setting_sprite.beginFill(0x222222, 1);
     bg_setting_sprite.moveTo(0, 0);
@@ -230,23 +310,33 @@ const GamePIXI = () => {
       const { wrapper: input_element_wrapper } = getInputSprite({
         text: String((amount * 2 - 1) * 100), onChange: val => { setting_item_text_arr[(amount - 1) * 2].text = val }
       })
-      setting_wrapper.addChild(input_element_wrapper)
+      setting_modal.addChild(input_element_wrapper)
       const { wrapper: input_element_wrapper2 } = getInputSprite({
         text: String(amount * 200), onChange: val => { setting_item_text_arr[(amount - 1) * 2 + 1].text = val }
       })
-      setting_wrapper.addChild(input_element_wrapper2)
+      setting_modal.addChild(input_element_wrapper2)
       input_element_wrapper.position.set(200, (amount - 1) * 80 + 150)
       input_element_wrapper2.position.set(500, (amount - 1) * 80 + 150)
     }
     const slider_sprite = getSliderSprite()
     slider_sprite.position.set(400, 60)
-    setting_wrapper.addChild(slider_sprite)
+    setting_modal.addChild(slider_sprite)
     const inputText = new PIXI.Text('Volume', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
     inputText.position.set(260, 45)
-    setting_wrapper.addChild(inputText)
+    setting_modal.addChild(inputText)
     const check_sprite = getCheckSprite()
     check_sprite.position.set(300, 100)
-    setting_wrapper.addChild(check_sprite)
+    setting_modal.addChild(check_sprite)
+
+    const close_button_sprite_2 = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-close.png'))
+    setting_modal.addChild(close_button_sprite_2)
+    close_button_sprite_2.position.set(850, 20)
+    close_button_sprite_2.eventMode = 'static';
+    close_button_sprite_2.cursor = 'pointer';
+    close_button_sprite_2.on('pointerdown', () => {
+      tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null)
+      tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
+    })
 
     const setting_at_status_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-setting-empty.png'))
     setting_at_status_sprite.position.set(275, 854)
@@ -258,13 +348,13 @@ const GamePIXI = () => {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
         close_button_sprite.eventMode = 'none'
       }
-      if (setting_wrapper.alpha === 0) {
-        tweenTo(setting_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
-        tweenTo(setting_wrapper, 'x', 2000, 500, 500, backout(1), null, null)
+      if (setting_modal_wrapper.x === 0) {
+        tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null)
+        tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
       }
-      else if (setting_wrapper.alpha === 1) {
-        tweenTo(setting_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
-        tweenTo(setting_wrapper, 'x', 500, 2000, 500, backout(1), null, null)
+      else if (setting_modal_wrapper.x === 2000) {
+        tweenTo(setting_modal_wrapper, 'x', 2000, 0, 500, backout(1), null, null)
+        tweenTo(setting_modal_wrapper, 'alpha', 0, 1, 500, backout(1), null, null);
       }
     }).on('pointerover', () => {
       setting_at_status_sprite.texture = PIXI.Texture.from('/assets/image/button-setting.png')
@@ -288,6 +378,25 @@ const GamePIXI = () => {
 
 
     const settings_list_sprite = new PIXI.Sprite()
+
+    const bg_setting_list_sprite = new PIXI.Graphics()
+    bg_setting_list_sprite.eventMode = 'static'
+    bg_setting_list_sprite.cursor = 'pointer';
+    bg_setting_list_sprite.on('pointerdown', (event) => {
+      if (event.target === bg_setting_list_sprite) {
+        tweenTo(settings_list_sprite.scale, 'x', 1, 0, 500, backout(1), null, null)
+        tweenTo(settings_list_sprite.scale, 'y', 1, 0, 500, backout(1), null, null)
+      }
+    });
+    settings_list_sprite.addChild(bg_setting_list_sprite)
+    bg_setting_list_sprite.lineStyle(0);
+    bg_setting_list_sprite.beginFill(0x222222, 0.01);
+    bg_setting_list_sprite.moveTo(-670, -300);
+    bg_setting_list_sprite.lineTo(1920, -300);
+    bg_setting_list_sprite.lineTo(1920, 960);
+    bg_setting_list_sprite.lineTo(-670, 960);
+
+
     settings_list_sprite.pivot.set(120, 560)
     settings_list_sprite.scale.set(0)
     settings_list_sprite.position.set(670, 840)
@@ -311,8 +420,8 @@ const GamePIXI = () => {
       setting_item_sprite.eventMode = 'static';
       setting_item_sprite.cursor = 'pointer';
       setting_item_sprite.on('pointerdown', () => {
-        bet_text.text = "BET \n" + setting_item_text.text + " FUN"
-        total_bet_text.text = "Total BET: " + parseInt(bline_val_text.text) * parseInt(setting_item_text.text) + " FUN"
+        bet_text.text = setting_item_text.text
+        total_bet_text.text = "Total BET: " + parseInt(bline_val_text.text) * parseInt(setting_item_text.text)
         tweenTo(settings_list_sprite.scale, 'x', 1, 0, 500, backout(1), null, null)
         tweenTo(settings_list_sprite.scale, 'y', 1, 0, 500, backout(1), null, null)
       }).on('pointerover', () => {
@@ -332,16 +441,19 @@ const GamePIXI = () => {
       setting_item_sprite.position.set(0, 40 * (13 - i))
     }
 
-    const bet_text = new PIXI.Text('BET\n1400 FUN', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
-    const total_bet_text = new PIXI.Text('Total BET: 1400 FUN', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
+    const bet_text = new PIXI.Text('1400', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
+    const bet_text_static = new PIXI.Text('BET', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
+    const total_bet_text = new PIXI.Text('Total BET: 1400', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
     const earned_text = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
-    const balance_text = new PIXI.Text('Balance: 100000 FUN', { fontFamily: 'Arial', fontSize: 20, fill: 0xffffff });
+    const balance_text = new PIXI.Text('Balance: 100000', { fontFamily: 'Arial', fontSize: 20, fill: 0xffffff });
+    appStage.addChild(bet_text_static)
     appStage.addChild(bet_text)
     appStage.addChild(balance_text)
     appStage.addChild(total_bet_text)
     appStage.addChild(earned_text)
-
-    bet_text.position.set(655, 900)
+    bet_text_static.position.set(665, 880)
+    bet_text_static.anchor.set(0.5)
+    bet_text.position.set(665, 930)
     bet_text.anchor.set(0.5)
     balance_text.position.set(230, 915)
     earned_text.position.set(1180, 880)
@@ -375,6 +487,10 @@ const GamePIXI = () => {
     button_bet_sprite.eventMode = 'static';
     button_bet_sprite.cursor = 'pointer';
     button_bet_sprite.on('pointerdown', () => {
+      if (setting_modal_wrapper.position.x === 0) {
+        tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null);
+        tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
+      }
       if (info_dialog_wrapper.alpha === 1) {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
         close_button_sprite.eventMode = 'none'
@@ -389,11 +505,11 @@ const GamePIXI = () => {
 
     })
     const bline_wrapper = new PIXI.Container()
-    const bline_bg_sprite = new PIXI.Graphics()
-    bline_wrapper.addChild(bline_bg_sprite)
-    bline_bg_sprite.lineStyle(0);
-    bline_bg_sprite.beginFill(0x222222, 0.5);
-    bline_bg_sprite.drawRoundedRect(0, 0, 180, 90, 20)
+    // const bline_bg_sprite = new PIXI.Graphics()
+    // bline_wrapper.addChild(bline_bg_sprite)
+    // bline_bg_sprite.lineStyle(0);
+    // bline_bg_sprite.beginFill(0x222222, 0.5);
+    // bline_bg_sprite.drawRoundedRect(0, 0, 180, 90, 20)
     bline_wrapper.position.set(5, 850)
     const bline_text = new PIXI.Text('Line', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
     bline_text.position.set(60, 5)
@@ -414,7 +530,7 @@ const GamePIXI = () => {
       const cur_bline = parseInt(bline_val_text.text)
       let new_bline = Math.min(cur_bline + 1, 20)
       bline_val_text.text = new_bline
-      total_bet_text.text = "Total BET: " + new_bline * parseInt(bet_text.text.substring(4)) + " FUN"
+      total_bet_text.text = "Total BET: " + new_bline * parseInt(bet_text.text)
     })
     dec_text.eventMode = 'static';
     dec_text.cursor = 'pointer';
@@ -422,7 +538,7 @@ const GamePIXI = () => {
       const cur_bline = parseInt(bline_val_text.text)
       let new_bline = Math.max(cur_bline - 1, 1)
       bline_val_text.text = new_bline
-      total_bet_text.text = "Total BET: " + new_bline * parseInt(bet_text.text.substring(4)) + " FUN"
+      total_bet_text.text = "Total BET: " + new_bline * parseInt(bet_text.text)
     })
 
     appStage.addChild(bline_wrapper)
@@ -436,7 +552,7 @@ const GamePIXI = () => {
       const result: Array<Array<number>> = []
       for (let i = 0; i < 5; i++) {
         const reel_arr = []
-        const cur_pos = Math.round((reels[i].position + 400) % reels[i].symbols.length)
+        const cur_pos = Math.round((reels[i].position + 400) % reels[i].animated_symbols.length)
         for (let j = 1; j < 4; j++) {
           reel_arr.push(reels[i].url_ids[(j - cur_pos + 400) % 4])
         }
@@ -483,13 +599,15 @@ const GamePIXI = () => {
           const won_line_number_arr: number[] = []
           let multiply_val = 1;
           for (let j = 0; j < matching; j++) {
-            const won_line_number = Math.round(pay_line[j] - reels[j].position + 4000 + 1) % 4
+            const won_line_number = Math.round(pay_line[j] - reels[j].position + 4000 + 1) % 4;
+            // (reels[j].animated_symbols[won_line_number].getChildAt(0) as PIXI.AnimatedSprite).play()
             won_line_number_arr.push(won_line_number)
             const cur_result_item = result[j][pay_line[j]]
             if (cur_result_item == 1 || cur_result_item == 2) multiply_val *= (cur_result_item + 1)
+
           }
           tweenTo(display_win_text, 'alpha', 0, 1, 500, backout(1), null, null)
-          const cur_win = parseInt(bet_text.text.substring(4)) * pay_elems[matching - 3] * multiply_val
+          const cur_win = parseInt(bet_text.text) * pay_elems[matching - 3] * multiply_val
           won_lines.push({ won_line_number_arr, multiply_val, pay_line_id: i + 1, cur_win })
           earned += cur_win
         }
@@ -507,16 +625,17 @@ const GamePIXI = () => {
       const slot_infos: Array<any> = JSON.parse(localStorage.getItem('slotinfo') || '[]')
       slot_infos.unshift(slotInfo)
       localStorage.setItem('slotinfo', JSON.stringify(slot_infos))
-      balance_text.text = "Balance: " + (parseInt(balance_text.text.substring(9)) + earned) + " FUN"
+      balance_text.text = "Balance: " + (parseInt(balance_text.text.substring(9)) + earned)
       cur_timing_counter = 0
       button_bet_sprite.eventMode = inc_text.eventMode = dec_text.eventMode = 'static'
     }
     function startPlay() {
 
       if (running) return;
+      running = true;
 
       button_bet_sprite.eventMode = inc_text.eventMode = dec_text.eventMode = 'none'
-      cur_bet_val = parseInt(bet_text.text.substring(4))
+      cur_bet_val = parseInt(bet_text.text)
       if (info_dialog_wrapper.alpha === 1) {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
         close_button_sprite.eventMode = 'none'
@@ -524,47 +643,55 @@ const GamePIXI = () => {
       if (display_win_text.alpha === 1) {
         tweenTo(display_win_text, 'alpha', 1, 0, 500, backout(1), null, null)
       }
-      if (setting_wrapper.alpha === 1) {
-        tweenTo(setting_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
-        tweenTo(setting_wrapper, 'x', 500, 2000, 500, backout(1), null, null)
+      if (setting_modal_wrapper.x === 0) {
+        tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null)
+        tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
       }
       const cur_bal = parseInt(balance_text.text.substring(9))
       const cur_total_bet = parseInt(total_bet_text.text.substring(11))
-      balance_text.text = "Balance: " + (cur_bal - cur_total_bet) + " FUN"
-      earned_text.text = ""
-      running = true;
-      won_lines = []
+      balance_text.text = "Balance: " + (cur_bal - cur_total_bet)
+      earned_text.text = "";
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 4; j++) {
+          (reels[i].animated_symbols[j].getChildAt(0) as PIXI.AnimatedSprite).stop()
+          reels[i].card_backs[j].alpha = 1;
+          reels[i].cards[j].alpha = 1
+        }
+      }
+
       for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
         const extra = Math.floor(Math.random() * 3);
-        const target = r.position + 10 + i * 5 + extra;
-        const time = 2500 + i * 600 + extra * 600;
+        const target = r.position + 50 + i * 5 + extra;
+        const time = 800 + i * 500 + extra * 0;
 
-        tweenTo(r, 'position', r.position, target, time, backout(1.05), null, i === reels.length - 1 ? reelsComplete : null);
+        tweenTo(r, 'position', r.position, target, time, backout(1.1), null, i === reels.length - 1 ? reelsComplete : null);
         // for (let j = 0; j < 4; j++) {
         //     r.cards[j].alpha = 1
         // }
       }
+      won_lines = []
     }
     app.ticker.add(() => {
       for (let i = 0; i < reels.length; i++) {
         const r = reels[i];
         r.blur.blurX = (r.position - r.previousPosition) * 1;
-        r.blur.blurY = (r.position - r.previousPosition) * 20;
-        for (let j = 0; j < r.symbols.length; j++) {
-          const s = r.symbols[j];
+        r.blur.blurY = (r.position - r.previousPosition) * 0;
+        for (let j = 0; j < r.animated_symbols.length; j++) {
+          const s = r.animated_symbols[j];
           const c = r.cards[j];
-          const rel_position = (r.position + j) % r.symbols.length
+          const rel_position = (r.position + j) % r.animated_symbols.length
           const relativePositionY = rel_position * 260;
           const globalPosition = c.toGlobal(new PIXI.Point(0, relativePositionY));
           c.position = (c.toLocal(globalPosition))
-          if (rel_position < 1 && (r.previousPosition + j) % r.symbols.length > 3) {
-            let url_id = Math.floor(Math.random() * slotTextures.length)
+          if (rel_position < 1 && (r.previousPosition + j) % r.animated_symbols.length > 3) {
+            let url_id = Math.floor(Math.random() * slotAnimateUrls.length)
             let compens_arr: number[] = []
             if (i == 0) compens_arr = [1, 2]
             if (i == 1 || i == 4) compens_arr = [0, 1, 2]
-            while (compens_arr.includes(url_id)) url_id = Math.floor(Math.random() * slotTextures.length)
-            s.texture = slotTextures[url_id];
+            while (compens_arr.includes(url_id)) url_id = Math.floor(Math.random() * slotAnimateUrls.length)
+            s.removeChildren()
+            s.addChild(gen_card_animated_sprite(slotAnimateUrls[url_id]))
             r.url_ids[j] = url_id
           }
         }
@@ -575,21 +702,49 @@ const GamePIXI = () => {
 
       const count = 2
       cur_timing_counter += delta / 20
+
+      if (won_lines.length === 0) return
+
       for (let i = 0; i < reels.length; i++) {
         for (let j = 0; j < 4; j++) {
-          reels[i].cards[j].alpha = 1
+          reels[i].cards[j].alpha = 0.2;
+          reels[i].card_backs[j].alpha = 0.2;
+          (reels[i].animated_symbols[j].getChildAt(0) as PIXI.AnimatedSprite).stop()
         }
       }
-      if (won_lines.length === 0) return
-      // won_lines.forEach(won_line => {
 
       const won_line = won_lines[Math.floor(cur_timing_counter / Math.PI / 2) % won_lines.length]
-      display_win_text.text = cur_bet_val * pay_elems[won_line.won_line_number_arr.length - 3] + (won_line.multiply_val === 1 ? " " : "X" + won_line.multiply_val) + "FUN"
+      display_win_text.text = cur_bet_val * pay_elems[won_line.won_line_number_arr.length - 3] + (won_line.multiply_val === 1 ? " " : "X" + won_line.multiply_val)
       for (let j = 0; j < won_line.won_line_number_arr.length; j++) {
-        reels[j].cards[won_line.won_line_number_arr[j]].alpha = (Math.cos(cur_timing_counter * count) + 4) / 5
+        reels[j].cards[won_line.won_line_number_arr[j]].alpha = 1
+        const symbol = reels[j].animated_symbols[won_line.won_line_number_arr[j]].getChildAt(0) as PIXI.AnimatedSprite
+        if (!symbol.playing) {
+          symbol.play()
+        }
+        reels[j].card_backs[won_line.won_line_number_arr[j]].alpha = (Math.cos(cur_timing_counter * count) + 4) / 5
       }
       // })
     });
+
+    // app.ticker.add((delta) => {
+
+    //   const count = 2
+    //   cur_timing_counter += delta / 20
+    //   for (let i = 0; i < reels.length; i++) {
+    //     for (let j = 0; j < 4; j++) {
+    //       reels[i].cards[j].alpha = 1
+    //     }
+    //   }
+    //   if (won_lines.length === 0) return
+    //   // won_lines.forEach(won_line => {
+
+    //   const won_line = won_lines[Math.floor(cur_timing_counter / Math.PI / 2) % won_lines.length]
+    //   display_win_text.text = cur_bet_val * pay_elems[won_line.won_line_number_arr.length - 3] + (won_line.multiply_val === 1 ? " " : "X" + won_line.multiply_val)
+    //   for (let j = 0; j < won_line.won_line_number_arr.length; j++) {
+    //     reels[j].cards[won_line.won_line_number_arr[j]].alpha = (Math.cos(cur_timing_counter * count) + 4) / 5
+    //   }
+    //   // })
+    // });
   }
 
 
