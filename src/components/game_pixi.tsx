@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { sound } from '@pixi/sound';
+// import { sound } from '@pixi/sound';
 import { useNavigate } from 'react-router-dom'
 import { IReel } from '../@types';
 import { PIXI, app, appStage, Global_Store } from '../renderer';
 import { loop } from '../system';
 import keyboard from '../utils/keyboard';
-import { getInfoMask, getReelContainerMask } from '../utils/mask';
+import { getReelContainerMask } from '../utils/mask';
 import { assetUrls, backout, lerp, show_dialog, slotAnimateUrls, tweenTo, tweening } from '../utils/urls';
 import { getInputSprite } from '../utils/input';
 import { bubble_animate, calculateScale, fire_animate, gen_autospin_item, gen_card_animated_sprite, pay_table, sleep } from '../utils/utils';
@@ -240,7 +240,7 @@ const GamePIXI = () => {
 
 
     const info_content_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/info-content.png'))
-    const info_bg_sprite_mask = getInfoMask()
+    // const info_bg_sprite_mask = getInfoMask()
     // info_content_sprite.mask = info_bg_sprite_mask
     info_dialog_wrapper.addChild(info_bg_sprite)
     info_dialog_wrapper.addChild(info_content_sprite)

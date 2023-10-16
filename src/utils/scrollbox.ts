@@ -1,5 +1,5 @@
 import { ScrollBox } from "@pixi/ui"
-import { PIXI } from "../renderer";
+// import { PIXI } from "../renderer";
 import { Graphics } from "pixi.js";
 
 export const getScrollBox = () => {
