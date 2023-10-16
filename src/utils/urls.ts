@@ -57,7 +57,7 @@ export const slotAnimateUrls = [
     { title: 'bird', length: 1, position: { x: 0, y: 0 }, scale: 1 },
     { title: 'boy', length: 1, position: { x: 0, y: 0 }, scale: 1 },
     { title: 'dragon', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'girl', length: 26, position: { x: -25, y: -70 }, scale: 1.3 },
+    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35 },
     { title: 'J', length: 22, position: { x: 0, y: 0 }, scale: 1 },
     { title: 'K', length: 22, position: { x: 0, y: 0 }, scale: 1 },
     { title: 'Q', length: 1, position: { x: 0, y: 0 }, scale: 1 },
