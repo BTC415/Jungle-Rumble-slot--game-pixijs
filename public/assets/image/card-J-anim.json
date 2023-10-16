@@ -4,7 +4,7 @@
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 250,
+				"w": 125,
 				"h": 250
 			},
 			"rotated": false,
@@ -12,11 +12,431 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 250,
+				"w": 125,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 250,
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-10.png": {
+			"frame": {
+				"x": 128,
+				"y": 1,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-11.png": {
+			"frame": {
+				"x": 255,
+				"y": 1,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-12.png": {
+			"frame": {
+				"x": 382,
+				"y": 1,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-13.png": {
+			"frame": {
+				"x": 509,
+				"y": 1,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-14.png": {
+			"frame": {
+				"x": 636,
+				"y": 1,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-15.png": {
+			"frame": {
+				"x": 1,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-16.png": {
+			"frame": {
+				"x": 128,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-17.png": {
+			"frame": {
+				"x": 255,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-18.png": {
+			"frame": {
+				"x": 382,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-19.png": {
+			"frame": {
+				"x": 509,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-2.png": {
+			"frame": {
+				"x": 636,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-20.png": {
+			"frame": {
+				"x": 1,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-21.png": {
+			"frame": {
+				"x": 128,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-22.png": {
+			"frame": {
+				"x": 255,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-3.png": {
+			"frame": {
+				"x": 382,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-4.png": {
+			"frame": {
+				"x": 509,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-5.png": {
+			"frame": {
+				"x": 636,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-6.png": {
+			"frame": {
+				"x": 763,
+				"y": 1,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-7.png": {
+			"frame": {
+				"x": 763,
+				"y": 253,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-8.png": {
+			"frame": {
+				"x": 763,
+				"y": 505,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
+				"h": 250
+			}
+		},
+		"card-J-anim-9.png": {
+			"frame": {
+				"x": 1,
+				"y": 757,
+				"w": 125,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 125,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 125,
 				"h": 250
 			}
 		}
@@ -27,8 +447,8 @@
 		"image": "card-J-anim.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 252,
-			"h": 252
+			"w": 889,
+			"h": 1008
 		},
 		"scale": "1"
 	}

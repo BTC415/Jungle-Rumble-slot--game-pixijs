@@ -296,7 +296,7 @@
   resolved "https://registry.npmjs.org/@pixi/app/-/app-7.3.1.tgz"
   integrity sha512-pQG/IIgsQLXmB/Y+qeS6g/VBF824XiCKtypgYVtdg+hwKdVN4aVhayBtvFBmxz+abRBXUdHSUhBG80haPXEtCQ==
 
-"@pixi/assets@7.3.1":
+"@pixi/assets@^7.0.0", "@pixi/assets@7.3.1":
   version "7.3.1"
   resolved "https://registry.npmjs.org/@pixi/assets/-/assets-7.3.1.tgz"
   integrity sha512-BACPZkm5ptkqXpdHvV0tdAzsVR9t9iQROa5K4OOGkyHUZhLFcoSPFu3Vfa77rzgo3xtTK+HTw3qABibr3RBcVw==
@@ -325,7 +325,7 @@
   resolved "https://registry.npmjs.org/@pixi/constants/-/constants-7.3.1.tgz"
   integrity sha512-Xq8tyUcVwpkPge9XGMZl9gzzNdNuKmjmxulJ9jNk9Zbf2QPVunn21WWZYBl4TO0mleUhT8wNnbXXn5CAbMgwFA==
 
-"@pixi/core@^7.2.3", "@pixi/core@7.3.1":
+"@pixi/core@^7.0.0", "@pixi/core@^7.2.3", "@pixi/core@7.3.1":
   version "7.3.1"
   resolved "https://registry.npmjs.org/@pixi/core/-/core-7.3.1.tgz"
   integrity sha512-LEASg6x2wp46y2WmN227K8X3vQKU0KxflrYGgj/o573OYSpEJkmY0WMoEInTUXmhCVLOHPcnBde5YDu0JmKsjQ==
@@ -448,6 +448,11 @@
     "@pixi/constants" "7.3.1"
     "@types/css-font-loading-module" "^0.0.7"
     ismobilejs "^1.1.0"
+
+"@pixi/sound@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.npmjs.org/@pixi/sound/-/sound-5.2.1.tgz"
+  integrity sha512-QzopUO1kdn2b6s0LkLuQTWdxn2//Of0x944huDLT53oXMPtfnv9Df2qqZeOVZfjzVU05Q8dRqG171YcWMk1ltg==
 
 "@pixi/sprite-animated@7.3.1":
   version "7.3.1"

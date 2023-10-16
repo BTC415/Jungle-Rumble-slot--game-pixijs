@@ -18,7 +18,7 @@ const BetHistory = () => {
         { field: 'id', headerName: 'Round ID', width: 100, valueGetter: (params: GridValueGetterParams) => params.row.id },
         { field: 'game', headerName: 'Game', width: 130, valueGetter: () => 'Slot Game' },
         { field: 'bet', headerName: 'Bet', width: 90 },
-        { field: 'lines', headerName: 'bline', width: 90 },
+        { field: 'blines', headerName: 'lines', width: 90 },
         {
             field: 'win',
             headerName: 'Win',

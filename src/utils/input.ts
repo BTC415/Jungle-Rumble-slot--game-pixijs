@@ -8,6 +8,7 @@ export const getInputSprite = ({ text, onChange }: { text: string, onChange: (va
     wrapper.addChild(inputSprite)
     const MAX_TEXT_LENGTH = 20
     const inputText = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 20, fill: 0x000000 });
+    inputText.eventMode = 'none'
     inputText.x = 140
     inputText.y = 50
     inputText.anchor.set(0.5);

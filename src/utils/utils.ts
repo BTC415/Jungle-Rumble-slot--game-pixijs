@@ -45,7 +45,7 @@ export const bubble_animate = () => {
     new_bubbleSprite.scale.set(1)
     appStage.addChild(new_bubbleSprite);
 }
-export const gen_card_animated_sprite = (item:slotAnimateUrlType) => {
+export const gen_card_animated_sprite = (item: slotAnimateUrlType) => {
     const frames = [];
     for (let i = 1; i <= item.length * 2 - 1; i++) {
         const j = (i > item.length) ? item.length * 2 - i : i
@@ -55,5 +55,58 @@ export const gen_card_animated_sprite = (item:slotAnimateUrlType) => {
     cardAnimateSprite.animationSpeed = 0.5;
     // cardAnimateSprite.play();
     appStage.addChild(cardAnimateSprite);
+    cardAnimateSprite.position.set(item.position.x, item.position.y)
+    cardAnimateSprite.scale.set(item.scale)
     return cardAnimateSprite;
 }
+export const gen_autospin_item = (text: string) => {
+    const button_auto_spin_item = new PIXI.Graphics()
+    button_auto_spin_item.lineStyle(0);
+    button_auto_spin_item.beginFill(0x444444, 1);
+    button_auto_spin_item.moveTo(0, 0);
+    button_auto_spin_item.lineTo(70, 0);
+    button_auto_spin_item.lineTo(70, 50);
+    button_auto_spin_item.lineTo(0, 50);
+    const button_auto_spin_item_static_text = new PIXI.Text(text, { fontFamily: 'Arial', fontSize: 20, fill: 0xffffff })
+    button_auto_spin_item_static_text.anchor.set(0.5)
+    button_auto_spin_item_static_text.position.set(button_auto_spin_item.width / 2, button_auto_spin_item.height / 2)
+    button_auto_spin_item.addChild(button_auto_spin_item_static_text)
+    return button_auto_spin_item
+}
+export const calculateScale = (sprite: PIXI.DisplayObject): PIXI.ObservablePoint => {
+    if (!sprite.parent) {
+        const new_point = new PIXI.ObservablePoint(() => { }, null, sprite.scale.x, sprite.scale.y)
+        return new_point
+    }
+    const parentSprite = sprite.parent;
+    const new_parentScale = calculateScale(parentSprite);
+    const spriteScale = sprite.scale;
+    new_parentScale.x *= spriteScale.x
+    new_parentScale.y *= spriteScale.y
+    return new_parentScale;
+}
+export const sleep = async (time: number) => await new Promise((resolve) => {
+    setTimeout(() => resolve("Go"), time);
+});
+export const pay_table = [
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0],
+    [1, 1, 0, 1, 2],
+    [1, 1, 2, 1, 0],
+    [2, 2, 2, 2, 2],
+    [1, 0, 1, 2, 1],
+    [1, 0, 1, 2, 2],
+    [1, 0, 0, 1, 2],
+    [1, 2, 1, 0, 1],
+    [1, 2, 2, 1, 0],
+    [1, 2, 1, 0, 0],
+    [0, 1, 2, 1, 0],
+    [0, 1, 1, 1, 2],
+    [0, 0, 1, 2, 2],
+    [0, 0, 1, 2, 1],
+    [0, 0, 0, 1, 2],
+    [2, 1, 0, 1, 2],
+    [2, 1, 1, 1, 0],
+    [2, 2, 1, 0, 0],
+    [2, 2, 1, 0, 1],
+]

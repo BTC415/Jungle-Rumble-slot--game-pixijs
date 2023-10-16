@@ -6,8 +6,8 @@ reelContainerMask.lineStyle(0);
 reelContainerMask.beginFill(0x8bc5ff, 0.8);
 reelContainerMask.moveTo(0, 260);
 reelContainerMask.lineTo(1330, 260);
-reelContainerMask.lineTo(1330, 1040);
-reelContainerMask.lineTo(0, 1040);
+reelContainerMask.lineTo(1330, 1075);
+reelContainerMask.lineTo(0, 1075);
 
 export const getReelContainerMask = () => reelContainerMask
 
