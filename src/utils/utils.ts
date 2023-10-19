@@ -47,12 +47,12 @@ export const bubble_animate = () => {
 }
 export const gen_card_animated_sprite = (item: slotAnimateUrlType) => {
     const frames = [];
-    for (let i = 1; i <= item.length * 2 - 1; i++) {
+    for (let i = 1; i <= (item.payback ? item.length * 2 - 1 : item.length); i++) {
         const j = (i > item.length) ? item.length * 2 - i : i
         frames.push(PIXI.Texture.from(`card-${item.title}-anim-${j}.png`));
     }
     const cardAnimateSprite = new PIXI.AnimatedSprite(frames);
-    cardAnimateSprite.animationSpeed = 0.5;
+    cardAnimateSprite.animationSpeed = item.speed;
     // cardAnimateSprite.play();
     appStage.addChild(cardAnimateSprite);
     cardAnimateSprite.position.set(item.position.x, item.position.y)

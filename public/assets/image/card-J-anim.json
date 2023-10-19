@@ -4,7 +4,7 @@
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -12,19 +12,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-10.png": {
 			"frame": {
-				"x": 128,
+				"x": 253,
 				"y": 1,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -32,19 +32,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-11.png": {
 			"frame": {
-				"x": 255,
+				"x": 505,
 				"y": 1,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -52,19 +52,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-12.png": {
 			"frame": {
-				"x": 382,
+				"x": 757,
 				"y": 1,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -72,19 +72,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-13.png": {
 			"frame": {
-				"x": 509,
+				"x": 1009,
 				"y": 1,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -92,19 +92,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-14.png": {
 			"frame": {
-				"x": 636,
-				"y": 1,
-				"w": 125,
+				"x": 1,
+				"y": 253,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -112,19 +112,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-15.png": {
 			"frame": {
-				"x": 1,
+				"x": 253,
 				"y": 253,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -132,19 +132,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-16.png": {
 			"frame": {
-				"x": 128,
+				"x": 505,
 				"y": 253,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -152,19 +152,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-17.png": {
 			"frame": {
-				"x": 255,
+				"x": 757,
 				"y": 253,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -172,19 +172,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-18.png": {
 			"frame": {
-				"x": 382,
+				"x": 1009,
 				"y": 253,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -192,19 +192,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-19.png": {
 			"frame": {
-				"x": 509,
-				"y": 253,
-				"w": 125,
+				"x": 1,
+				"y": 505,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -212,19 +212,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-2.png": {
 			"frame": {
-				"x": 636,
-				"y": 253,
-				"w": 125,
+				"x": 253,
+				"y": 505,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -232,19 +232,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-20.png": {
 			"frame": {
-				"x": 1,
+				"x": 505,
 				"y": 505,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -252,19 +252,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-21.png": {
 			"frame": {
-				"x": 128,
+				"x": 757,
 				"y": 505,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -272,19 +272,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-22.png": {
 			"frame": {
-				"x": 255,
+				"x": 1009,
 				"y": 505,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -292,19 +292,99 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
+				"h": 250
+			}
+		},
+		"card-J-anim-23.png": {
+			"frame": {
+				"x": 1,
+				"y": 757,
+				"w": 250,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 250,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 250,
+				"h": 250
+			}
+		},
+		"card-J-anim-24.png": {
+			"frame": {
+				"x": 253,
+				"y": 757,
+				"w": 250,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 250,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 250,
+				"h": 250
+			}
+		},
+		"card-J-anim-25.png": {
+			"frame": {
+				"x": 505,
+				"y": 757,
+				"w": 250,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 250,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 250,
+				"h": 250
+			}
+		},
+		"card-J-anim-26.png": {
+			"frame": {
+				"x": 757,
+				"y": 757,
+				"w": 250,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 250,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-3.png": {
 			"frame": {
-				"x": 382,
-				"y": 505,
-				"w": 125,
+				"x": 1009,
+				"y": 757,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -312,19 +392,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-4.png": {
 			"frame": {
-				"x": 509,
-				"y": 505,
-				"w": 125,
+				"x": 1,
+				"y": 1009,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -332,19 +412,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-5.png": {
 			"frame": {
-				"x": 636,
-				"y": 505,
-				"w": 125,
+				"x": 253,
+				"y": 1009,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -352,19 +432,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-6.png": {
 			"frame": {
-				"x": 763,
-				"y": 1,
-				"w": 125,
+				"x": 505,
+				"y": 1009,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -372,19 +452,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-7.png": {
 			"frame": {
-				"x": 763,
-				"y": 253,
-				"w": 125,
+				"x": 757,
+				"y": 1009,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -392,19 +472,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-8.png": {
 			"frame": {
-				"x": 763,
-				"y": 505,
-				"w": 125,
+				"x": 1009,
+				"y": 1009,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -412,19 +492,19 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		},
 		"card-J-anim-9.png": {
 			"frame": {
-				"x": 1,
-				"y": 757,
-				"w": 125,
+				"x": 1261,
+				"y": 1,
+				"w": 250,
 				"h": 250
 			},
 			"rotated": false,
@@ -432,11 +512,11 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 125,
+				"w": 250,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 125,
+				"w": 250,
 				"h": 250
 			}
 		}
@@ -447,8 +527,8 @@
 		"image": "card-J-anim.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 889,
-			"h": 1008
+			"w": 1512,
+			"h": 1260
 		},
 		"scale": "1"
 	}

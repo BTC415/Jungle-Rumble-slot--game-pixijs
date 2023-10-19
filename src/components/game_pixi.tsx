@@ -1208,10 +1208,10 @@ const GamePIXI = () => {
 
             copiedChild.position.copyFrom(testContainerSprite.toLocal(originalChild.toGlobal(new PIXI.Point())));
             copiedChild.scale.set(calculateScale(originalChild).x / appStage.scale.x);
+            copiedChild.animationSpeed = originalChild.animationSpeed
             copiedChild.tint = originalChild.tint;
 
             testContainerSprite.addChild(copiedChild);
-            copiedChild.animationSpeed = 0.5
             copiedChild.play()
           }
         }

@@ -46,23 +46,23 @@ export const assetUrls = [
     '/assets/audio/sfx/spin.mp3',
 ]
 export type slotAnimateUrlType = {
-    title: string, length: number, position: { x: number, y: number }, scale: number
+    title: string, length: number, position: { x: number, y: number }, scale: number, payback?: boolean, speed: number
 }
 export const slotAnimateUrls = [
-    { title: 'wild', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'wild2', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'wild3', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: '10', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'A', length: 24, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'bird', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'boy', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'dragon', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35 },
-    { title: 'J', length: 22, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'K', length: 22, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'Q', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'sun', length: 1, position: { x: 0, y: 0 }, scale: 1 },
-    { title: 'triangle', length: 1, position: { x: 0, y: 0 }, scale: 1 },
+    { title: 'wild', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: 'wild2', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: 'wild3', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: '10', length: 22, position: { x: -40, y: -30 }, scale: 1.3, speed: 0.3 },
+    { title: 'A', length: 30, position: { x: -30, y: 0 }, scale: 1.1, speed: 0.3 },
+    { title: 'bird', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: 'boy', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: 'dragon', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35, playback: true, speed: 1 },
+    { title: 'J', length: 26, position: { x: 0, y: 0 }, scale: 1, speed: 0.3 },
+    { title: 'K', length: 26, position: { x: 0, y: 0 }, scale: 1, speed: 0.3 },
+    { title: 'Q', length: 28, position: { x: -20, y: 0 }, scale: 1.1, speed: 0.3 },
+    { title: 'sun', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    { title: 'triangle', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
 ]
 export const show_dialog = (info_dialog_wrapper: PIXI.Container, close_button_sprite: PIXI.Sprite) => {
     if (info_dialog_wrapper.alpha === 0) {
