@@ -7,3 +7,16 @@ export interface IConfig {
   transparent?: boolean;
   resolution?: number;
 };
+export type game_global_vars_type = {
+  auto_spin_val: number,
+  prev_won_line_index: number,
+  last_win: number,
+  cur_bet_val: number,
+  // won_lines: Array<{
+  //   won_line_number_arr: Array<number>,
+  //   pay_line_id: number,
+  //   cur_win: number
+  // }>,
+  running: boolean,
+  wonRes: any,
+}

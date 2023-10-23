@@ -1,4 +1,4 @@
-import { PIXI, appStage, Global_Store, app } from ".";
+import { PIXI, appStage, Global_Vars, app } from ".";
 import { loadingTextStyle } from "../config";
 
 const loadingText = new PIXI.Text(`Loading...`, loadingTextStyle);
@@ -15,7 +15,7 @@ loadingSpriteBackSprite.lineTo(5000, 7000);
 loadingSpriteBackSprite.lineTo(-4000, 7000);
 appStage.addChild(loadingText);
 PIXI.Assets.load(['/assets/image/loading.json']).then(() => {
-  if (Global_Store.loaded) return
+  if (Global_Vars.initLoaded) return
   const frames = [];
   for (let i = 0; i < 34; i++) {
     const val = i < 10 ? `0${i}` : i;
@@ -30,8 +30,8 @@ PIXI.Assets.load(['/assets/image/loading.json']).then(() => {
   appStage.addChild(loadingSprite);
 });
 PIXI.Assets.load(['/assets/image/power-game.json', '/assets/image/init-bg.png']).then(() => {
-  if (Global_Store.loaded) return
-  Global_Store.loaded = true
+  if (Global_Vars.loaded) return
+  Global_Vars.initLoaded = true
   const frames = [];
   for (let i = 0; i < 48; i++) {
     const val = i < 10 ? `0${i}` : i;

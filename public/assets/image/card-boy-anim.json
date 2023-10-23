@@ -4,7 +4,7 @@
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 250,
+				"w": 184,
 				"h": 250
 			},
 			"rotated": false,
@@ -12,11 +12,451 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 250,
+				"w": 184,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 250,
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-10.png": {
+			"frame": {
+				"x": 187,
+				"y": 1,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-11.png": {
+			"frame": {
+				"x": 373,
+				"y": 1,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-12.png": {
+			"frame": {
+				"x": 559,
+				"y": 1,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-13.png": {
+			"frame": {
+				"x": 745,
+				"y": 1,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-14.png": {
+			"frame": {
+				"x": 1,
+				"y": 253,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-15.png": {
+			"frame": {
+				"x": 187,
+				"y": 253,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-16.png": {
+			"frame": {
+				"x": 373,
+				"y": 253,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-17.png": {
+			"frame": {
+				"x": 559,
+				"y": 253,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-18.png": {
+			"frame": {
+				"x": 745,
+				"y": 253,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-19.png": {
+			"frame": {
+				"x": 1,
+				"y": 505,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-2.png": {
+			"frame": {
+				"x": 187,
+				"y": 505,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-20.png": {
+			"frame": {
+				"x": 373,
+				"y": 505,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-21.png": {
+			"frame": {
+				"x": 559,
+				"y": 505,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-22.png": {
+			"frame": {
+				"x": 745,
+				"y": 505,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-23.png": {
+			"frame": {
+				"x": 1,
+				"y": 757,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-3.png": {
+			"frame": {
+				"x": 187,
+				"y": 757,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-4.png": {
+			"frame": {
+				"x": 373,
+				"y": 757,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-5.png": {
+			"frame": {
+				"x": 559,
+				"y": 757,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-6.png": {
+			"frame": {
+				"x": 745,
+				"y": 757,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-7.png": {
+			"frame": {
+				"x": 931,
+				"y": 1,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-8.png": {
+			"frame": {
+				"x": 931,
+				"y": 253,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
+				"h": 250
+			}
+		},
+		"card-boy-anim-9.png": {
+			"frame": {
+				"x": 931,
+				"y": 505,
+				"w": 184,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 184,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 184,
 				"h": 250
 			}
 		}
@@ -27,8 +467,8 @@
 		"image": "card-boy-anim.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 252,
-			"h": 252
+			"w": 1116,
+			"h": 1008
 		},
 		"scale": "1"
 	}

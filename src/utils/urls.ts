@@ -15,8 +15,6 @@ export const assetUrls = [
     '/assets/image/fire.json',
     '/assets/image/bubble.json',
     '/assets/image/card-wild-anim.json',
-    '/assets/image/card-wild2-anim.json',
-    '/assets/image/card-wild3-anim.json',
     '/assets/image/card-10-anim.json',
     '/assets/image/card-A-anim.json',
     '/assets/image/card-bird-anim.json',
@@ -42,28 +40,112 @@ export const assetUrls = [
     '/assets/image/button-mobile-reload.png',
     '/assets/image/button-mobile-setting.png',
     '/assets/image/button-mobile-wallet.png',
+
+    '/assets/image/music-true.png',
+    '/assets/image/music-false.png',
+    '/assets/image/fx-true.png',
+    '/assets/image/fx-false.png',
+
+
+    '/assets/image/portal1.png',
+    // '/assets/image/portal2.png',
+    '/assets/image/logo-jungle.png',
+    '/assets/image/button-start.png',
     //Sound
     '/assets/audio/sfx/spin.mp3',
+    '/assets/audio/sfx/win.mp3',
+    '/assets/audio/bgm/bg-sound.mp3',
 ]
 export type slotAnimateUrlType = {
-    title: string, length: number, position: { x: number, y: number }, scale: number, payback?: boolean, speed: number
+    title: string, length: number, position: { x: number, y: number }, scale: number, playback?: boolean, speed: number
 }
-export const slotAnimateUrls = [
-    { title: 'wild', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
-    { title: 'wild2', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
-    { title: 'wild3', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+export const slotAnimateUrls:slotAnimateUrlType[] = [
     { title: '10', length: 22, position: { x: -40, y: -30 }, scale: 1.3, speed: 0.3 },
     { title: 'A', length: 30, position: { x: -30, y: 0 }, scale: 1.1, speed: 0.3 },
-    { title: 'bird', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
-    { title: 'boy', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
-    { title: 'dragon', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
-    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35, playback: true, speed: 1 },
+    { title: 'bird', length: 20, position: { x: 0, y: 10 }, scale: 1, speed: 0.31 },
+    { title: 'boy', length: 23, position: { x: 30, y: 0 }, scale: 1, speed: 0.31 },
+    { title: 'dragon', length: 24, position: { x: -65, y: -50 }, scale: 1.5, playback: true, speed: 0.31 },
+    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35, playback: true, speed: 0.5 },
+    { title: 'wild', length: 17, position: { x: -30, y: -50 }, scale: 1.4, speed: 0.1 },
     { title: 'J', length: 26, position: { x: 0, y: 0 }, scale: 1, speed: 0.3 },
     { title: 'K', length: 26, position: { x: 0, y: 0 }, scale: 1, speed: 0.3 },
     { title: 'Q', length: 28, position: { x: -20, y: 0 }, scale: 1.1, speed: 0.3 },
-    { title: 'sun', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
-    { title: 'triangle', length: 1, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    // { title: 'sun', length: 29, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
+    // { title: 'triangle', length: 18, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
 ]
+export const slotReels = [
+    [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        // 10,
+        // 11
+    ],
+    [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        // 10,
+        // 11,
+        0,
+    ],
+    [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        // 10,
+        // 11,
+        0,
+        1,
+    ],
+    [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        // 10,
+        // 11,
+        0,
+        1,
+        2,
+    ],
+    [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        // 10,
+        // 11,
+        0,
+        1,
+        2,
+        3,
+    ],
+]
+
 export const show_dialog = (info_dialog_wrapper: PIXI.Container, close_button_sprite: PIXI.Sprite) => {
     if (info_dialog_wrapper.alpha === 0) {
         tweenTo(info_dialog_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
@@ -96,4 +178,7 @@ export function lerp(a1: any, a2: any, t: any) {
 export function backout(b: any) {
     // return (t: any) => (t * t * ((amount + 1) * t + amount));
     return (t: any) => (Math.sin(b * Math.PI * t - Math.PI / 2) + 1) / (Math.sin(b * Math.PI - Math.PI / 2) + 1)
+}
+export function fadeInOut() {
+    return (t: any) => 1 - Math.sin(t * Math.PI)
 }

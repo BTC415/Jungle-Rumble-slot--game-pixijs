@@ -4,7 +4,7 @@
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 250,
+				"w": 204,
 				"h": 250
 			},
 			"rotated": false,
@@ -12,11 +12,331 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 250,
+				"w": 204,
 				"h": 250
 			},
 			"sourceSize": {
-				"w": 250,
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-10.png": {
+			"frame": {
+				"x": 207,
+				"y": 1,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-11.png": {
+			"frame": {
+				"x": 413,
+				"y": 1,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-12.png": {
+			"frame": {
+				"x": 619,
+				"y": 1,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-13.png": {
+			"frame": {
+				"x": 1,
+				"y": 253,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-14.png": {
+			"frame": {
+				"x": 207,
+				"y": 253,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-15.png": {
+			"frame": {
+				"x": 413,
+				"y": 253,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-16.png": {
+			"frame": {
+				"x": 619,
+				"y": 253,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-17.png": {
+			"frame": {
+				"x": 1,
+				"y": 505,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-2.png": {
+			"frame": {
+				"x": 207,
+				"y": 505,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-3.png": {
+			"frame": {
+				"x": 413,
+				"y": 505,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-4.png": {
+			"frame": {
+				"x": 619,
+				"y": 505,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-5.png": {
+			"frame": {
+				"x": 825,
+				"y": 1,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-6.png": {
+			"frame": {
+				"x": 825,
+				"y": 253,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-7.png": {
+			"frame": {
+				"x": 825,
+				"y": 505,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-8.png": {
+			"frame": {
+				"x": 1,
+				"y": 757,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
+				"h": 250
+			}
+		},
+		"card-wild-anim-9.png": {
+			"frame": {
+				"x": 207,
+				"y": 757,
+				"w": 204,
+				"h": 250
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 204,
+				"h": 250
+			},
+			"sourceSize": {
+				"w": 204,
 				"h": 250
 			}
 		}
@@ -27,8 +347,8 @@
 		"image": "card-wild-anim.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 252,
-			"h": 252
+			"w": 1030,
+			"h": 1008
 		},
 		"scale": "1"
 	}

@@ -1,6 +1,7 @@
 import { PIXI, appStage } from "../renderer";
 import { slotAnimateUrlType } from "./urls";
-
+import { sound } from '@pixi/sound';
+export const critical_ratio = 0.75
 export const fire_animate = () => {
     const frames = [];
     for (let i = 0; i < 300; i++) {
@@ -47,7 +48,7 @@ export const bubble_animate = () => {
 }
 export const gen_card_animated_sprite = (item: slotAnimateUrlType) => {
     const frames = [];
-    for (let i = 1; i <= (item.payback ? item.length * 2 - 1 : item.length); i++) {
+    for (let i = 1; i <= (item.playback === true ? item.length * 2 - 1 : item.length); i++) {
         const j = (i > item.length) ? item.length * 2 - i : i
         frames.push(PIXI.Texture.from(`card-${item.title}-anim-${j}.png`));
     }
@@ -110,3 +111,32 @@ export const pay_table = [
     [2, 2, 1, 0, 0],
     [2, 2, 1, 0, 1],
 ]
+
+export const playSound = (type: 'bg' | 'spin' | 'win') => {
+    let status = '';
+    switch (type) {
+        case 'bg':
+            status = localStorage.getItem('music') || 'true'
+            break;
+        case 'spin':
+        case 'win':
+            status = localStorage.getItem('fx') || 'true'
+            break;
+    }
+    if (status === 'true')
+        sound.play(`${type}-sound`, { loop: type === 'bg' });
+}
+export const stopSound = (type: 'bg' | 'spin' | 'win') => {
+    sound.stop(`${type}-sound`)
+}
+
+export const loadSound = () => {
+    sound.add('bg-sound', '/assets/audio/bgm/bg-sound.mp3');
+    sound.add('spin-sound', '/assets/audio/sfx/spin.mp3');
+    sound.add('win-sound', '/assets/audio/sfx/win.mp3');
+    sound.volumeAll = 0.5
+
+}
+export const setVolume = (val: number) => {
+    sound.volumeAll = val / 100
+}

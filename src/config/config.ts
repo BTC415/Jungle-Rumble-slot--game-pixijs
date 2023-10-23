@@ -1,4 +1,4 @@
-import { IConfig } from "../@types";
+import { IConfig, game_global_vars_type } from "../@types";
 export const config: IConfig = {
   width: window.innerWidth,
   height: window.innerHeight,
@@ -8,3 +8,12 @@ export const config: IConfig = {
   transparent: false,
   resolution: 1
 };
+export const game_global_vars: game_global_vars_type = {
+  auto_spin_val: 0,
+  prev_won_line_index: -1,
+  // won_lines: [],
+  last_win: 0,
+  cur_bet_val: 0,
+  running: false,  
+  wonRes: null,
+}
