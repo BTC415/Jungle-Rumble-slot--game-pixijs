@@ -25,12 +25,12 @@ export async function loadStartScreen(navigate: NavigateFunction, gameParams: ga
   });
   (Global_Vars.info_dialog_wrapper_resize_callback = function () {
     if (app.screen.width > app.screen.height * critical_ratio) {
-      portalSprite1.position.set(600, 200)
+      portalSprite1.position.set(600, 250)
       // portalSprite2.position.set(1000, 200)
       buttonStart.position.set(800, 750);
       logoJungleSprite.position.set(680, 0)
     } else {
-      portalSprite1.position.set(600, 100)
+      portalSprite1.position.set(600, 150)
       // portalSprite2.position.set(600, 360)
       buttonStart.position.set(780, 650);
       logoJungleSprite.position.set(680, -100)
