@@ -29,13 +29,13 @@ PIXI.Assets.load(['/assets/image/loading.json']).then(() => {
   loadingSprite.position.set(970, 430)
   appStage.addChild(loadingSprite);
 });
-PIXI.Assets.load(['/assets/image/power-game.json', '/assets/image/init-bg.png']).then(() => {
+PIXI.Assets.load(['/assets/image/loading-bar-anim.json', '/assets/image/init-bg.png']).then(() => {
   if (Global_Vars.loaded) return
   Global_Vars.initLoaded = true
   const frames = [];
-  for (let i = 0; i < 48; i++) {
-    const val = i < 10 ? `0${i}` : i;
-    frames.push(PIXI.Texture.from(`power-game-${val}.gif`));
+  for (let i = 1; i <= 23; i++) {
+    // const val = i < 10 ? `0${i}` : i;
+    frames.push(PIXI.Texture.from(`loading-bar-anim-${i}.png`));
   }
   const splashContainer = new PIXI.Container();
   const back_graphics_sprite = new PIXI.Graphics()
@@ -45,7 +45,7 @@ PIXI.Assets.load(['/assets/image/power-game.json', '/assets/image/init-bg.png'])
 
   const splashSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/init-bg.png'))
   const loadingSprite = new PIXI.AnimatedSprite(frames);
-  loadingSprite.animationSpeed = 0.5;
+  loadingSprite.animationSpeed = 0.2;
   loadingSprite.play();
   splashContainer.x = 680
   splashContainer.y = 300
@@ -53,8 +53,8 @@ PIXI.Assets.load(['/assets/image/power-game.json', '/assets/image/init-bg.png'])
   splashSprite.position.set(280, 220)
   splashContainer.addChild(splashSprite)
   splashContainer.addChild(loadingSprite)
-  loadingSprite.x = 95
-  loadingSprite.y = 330
+  loadingSprite.position.set(60,330)
+  loadingSprite.scale.set(1.5)
   appStage.removeChildren();
   appStage.addChild(splashContainer);
 });
