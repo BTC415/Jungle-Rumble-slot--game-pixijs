@@ -41,11 +41,7 @@ PIXI.Assets.load(['/assets/image/power-game.json', '/assets/image/init-bg.png'])
   const back_graphics_sprite = new PIXI.Graphics()
   splashContainer.addChild(back_graphics_sprite)
   back_graphics_sprite.lineStyle(0);
-  back_graphics_sprite.beginFill(0x0, 1);
-  back_graphics_sprite.moveTo(-4000, -6000);
-  back_graphics_sprite.lineTo(5000, -6000);
-  back_graphics_sprite.lineTo(5000, 7000);
-  back_graphics_sprite.lineTo(-4000, 7000);
+  back_graphics_sprite.beginFill(0x0, 1).drawRect(-4000, -6000, 9000, 9000);
 
   const splashSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/init-bg.png'))
   const loadingSprite = new PIXI.AnimatedSprite(frames);
@@ -54,7 +50,7 @@ PIXI.Assets.load(['/assets/image/power-game.json', '/assets/image/init-bg.png'])
   splashContainer.x = 680
   splashContainer.y = 300
   splashSprite.anchor.set(0.5)
-  splashSprite.position.set(280, 150)
+  splashSprite.position.set(280, 220)
   splashContainer.addChild(splashSprite)
   splashContainer.addChild(loadingSprite)
   loadingSprite.x = 95

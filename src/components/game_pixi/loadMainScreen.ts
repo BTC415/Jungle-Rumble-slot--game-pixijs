@@ -1130,18 +1130,34 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             tweenTo(bline_list_sprite.scale, 'y', scale, 0, 500, backout(1), null, null)
         }
 
-        const { data: { hash } } = await axios.post('/api/user/games/create', {
-            game_package_id: "slots",
-            client_seed: Math.ceil(Math.random() * 99999999)
-        })
-
-        const { data: { status, message } } = await axios.post('/api/games/slots/play/verify', {
-            "hash": hash,//gameParams.hash,
+        // const { data: { hash } } = await axios.post('/api/user/games/create', {
+        //     game_package_id: "slots",
+        //     client_seed: Math.ceil(Math.random() * 99999999)
+        // })
+        let hash = gameParams.hash
+        let { data: { status, message } } = await axios.post('/api/games/slots/play/verify', {
+            "hash": gameParams.hash,//hash,//
             "bet": parseInt(bet_text.text),
             "lines": parseInt(bline_val_text.text),
             "variation": 0,
             "slot_type": "fruits"
         })
+        if (!status) {
+            const { data: { hash: _hash } } = await axios.post('/api/user/games/create', {
+                game_package_id: "slots",
+                client_seed: Math.ceil(Math.random() * 99999999)
+            })
+            let { data: { status: _status, message: _message } } = await axios.post('/api/games/slots/play/verify', {
+                "hash": _hash,
+                "bet": parseInt(bet_text.text),
+                "lines": parseInt(bline_val_text.text),
+                "variation": 0,
+                "slot_type": "fruits"
+            })
+            status = _status
+            message = _message
+            hash = _hash
+        }
         if (!status) {
             alert(message)
             game_global_vars.running = false;
@@ -1150,7 +1166,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             return
         }
         const { data: wonRes } = await axios.post('/api/games/slots/play', {
-            "hash": hash,//gameParams.hash,
+            "hash": hash,//gameParams.hash,//hash,//
             "bet": parseInt(bet_text.text),
             "lines": parseInt(bline_val_text.text),
             "variation": 0,
