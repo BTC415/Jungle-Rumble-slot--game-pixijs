@@ -233,7 +233,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     close_button_sprite.cursor = 'pointer';
     close_button_sprite.on('pointerdown', () => {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
-        tweenTo(info_dialog_wrapper, 'y', 0, 10000, 500, rectout(1), null, null)
+        tweenTo(info_dialog_wrapper, 'y', 0, 10000, 500, rectout(), null, null)
         close_button_sprite.eventMode = 'none';
     })
     scroll_bar_sprite.position.set(1560, scroll_bar_init_y)

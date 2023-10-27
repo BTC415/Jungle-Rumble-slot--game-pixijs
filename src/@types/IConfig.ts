@@ -1,4 +1,3 @@
-import { PIXI } from "../renderer";
 
 export interface IConfig {
   width: number;

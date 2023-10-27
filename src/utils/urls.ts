@@ -151,7 +151,7 @@ export const show_dialog = (info_dialog_wrapper: PIXI.Container, close_button_sp
         close_button_sprite.eventMode = 'static'
     } else if (info_dialog_wrapper.alpha === 1) {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
-        tweenTo(info_dialog_wrapper, 'y', 0, 10000, 500, rectout(1), null, null)
+        tweenTo(info_dialog_wrapper, 'y', 0, 10000, 500, rectout(), null, null)
         close_button_sprite.eventMode = 'none'
     }
 }
@@ -178,8 +178,8 @@ export function tweenTo(
         change,
         complete,
         start: Date.now(),
-        uuid:uuidv4(),
-        flow:!willCreateReelTweening
+        uuid: uuidv4(),
+        flow: !willCreateReelTweening
     };
 
     if (willCreateReelTweening) reelTweenings.push(tween);
@@ -196,6 +196,6 @@ export function backout(b: number) {
 export function fadeInOut() {
     return (t: number) => 1 - Math.sin(t * Math.PI)
 }
-export function rectout(b: number) {
+export function rectout() {
     return (t: number) => (t < 0.99) ? 1 : 0
 }
