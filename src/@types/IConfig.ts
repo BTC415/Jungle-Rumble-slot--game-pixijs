@@ -1,3 +1,5 @@
+import { PIXI } from "../renderer";
+
 export interface IConfig {
   width: number;
   height: number;
@@ -8,6 +10,7 @@ export interface IConfig {
   resolution?: number;
 };
 export type game_global_vars_type = {
+  info_dialog_wrapper_scale_ratio:number,
   auto_spin_val: number,
   prev_won_line_index: number,
   last_win: number,

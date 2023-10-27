@@ -17,10 +17,11 @@ const StoreProvider = (props: { children: JSX.Element }) => {
     };
 
     useEffect(() => {
+        // authorize(true)
         const urlParams = new URLSearchParams(window.location.search);
         const token: string = urlParams.get('token') || "";
         axios.defaults.headers.common['token'] = token;
-        axios.defaults.baseURL = 'https://dev.vacuumplay.com'
+        axios.defaults.baseURL = 'https://vacuumplay.com'
         axios.post('/api/config').then((response) => {
             setGameParmas(prev => ({
                 ...prev,

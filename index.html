@@ -1,18 +1,36 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="./src/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Slot Game </title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <div id="game"></div>
-    <script type="module" src="./src/main.tsx"></script>
-    <!-- <footer>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="./src/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Slot Game </title>
+  <script>
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+    document.onkeydown = function (event) {
+      if (event.keyCode == 123) { // Prevent F12
+        return false;
+      } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        return false;
+      } else if (event.ctrlKey && event.shiftKey && event.keyCode == 67) { // Prevent Ctrl+Shift+I        
+        return false;
+      }
+    };
+
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <div id="game"></div>
+  <script type="module" src="./src/main.tsx"></script>
+  <!-- <footer>
       <p>&nbsp;</p>
     </footer> -->
-  </body>
+</body>
+
 </html>

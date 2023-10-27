@@ -1,6 +1,7 @@
+import { IReel, slotAnimateUrlType } from "../@types";
 import { PIXI, appStage } from "../renderer";
-import { slotAnimateUrlType } from "./urls";
 import { sound } from '@pixi/sound';
+import { backout, reelTweenings, tweenTo } from "./urls";
 export const critical_ratio = 0.75
 export const fire_animate = () => {
     const frames = [];
@@ -48,7 +49,7 @@ export const bubble_animate = () => {
 }
 export const gen_card_animated_sprite = (item: slotAnimateUrlType) => {
     const frames = [];
-    for (let i = 1; i <= (item.playback === true ? item.length * 2 - 1 : item.length); i++) {
+    for (let i = 1; i <= (item.playback ? item.length * 2 - 1 : item.length); i++) {
         const j = (i > item.length) ? item.length * 2 - i : i
         frames.push(PIXI.Texture.from(`card-${item.title}-anim-${j}.png`));
     }
@@ -139,4 +140,16 @@ export const loadSound = () => {
 }
 export const setVolume = (val: number) => {
     sound.volumeAll = val / 100
+}
+export const animateReels = (reels: IReel[], reelsComplete: () => Promise<void>) => {
+
+    reelTweenings.splice(0)
+    for (let i = 0; i < reels.length; i++) {
+        const r = reels[i];
+        // const extra = Math.floor(Math.random() * 3);
+        // const target = r.position + 50 + i * 5 + extra;
+        const target = r.animated_symbols.length * 30
+        const time = 8000 + i * 500
+        tweenTo(r, 'position', r.position % r.animated_symbols.length, target, time, backout(1.03), null, i === reels.length - 1 ? reelsComplete : null, true);
+    }
 }

@@ -1,5 +1,6 @@
+import { slotAnimateUrlType, tweenType } from "../@types"
 import { PIXI } from "../renderer"
-
+import { v4 as uuidv4 } from 'uuid';
 export const assetUrls = [
     '/assets/image/background.png',
     '/assets/image/background-footer.png',
@@ -56,20 +57,17 @@ export const assetUrls = [
     '/assets/audio/sfx/win.mp3',
     '/assets/audio/bgm/bg-sound.mp3',
 ]
-export type slotAnimateUrlType = {
-    title: string, length: number, position: { x: number, y: number }, scale: number, playback?: boolean, speed: number
-}
-export const slotAnimateUrls:slotAnimateUrlType[] = [
-    { title: '10', length: 22, position: { x: -40, y: -30 }, scale: 1.3, speed: 0.3 },
-    { title: 'A', length: 30, position: { x: -30, y: 0 }, scale: 1.1, speed: 0.3 },
-    { title: 'bird', length: 20, position: { x: 0, y: 10 }, scale: 1, speed: 0.31 },
-    { title: 'boy', length: 23, position: { x: 30, y: 0 }, scale: 1, speed: 0.31 },
-    { title: 'dragon', length: 24, position: { x: -65, y: -50 }, scale: 1.5, playback: true, speed: 0.31 },
-    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35, playback: true, speed: 0.5 },
-    { title: 'wild', length: 17, position: { x: -30, y: -50 }, scale: 1.4, speed: 0.1 },
-    { title: 'J', length: 26, position: { x: 0, y: 0 }, scale: 1, speed: 0.3 },
-    { title: 'K', length: 26, position: { x: 0, y: 0 }, scale: 1, speed: 0.3 },
-    { title: 'Q', length: 28, position: { x: -20, y: 0 }, scale: 1.1, speed: 0.3 },
+export const slotAnimateUrls: slotAnimateUrlType[] = [
+    { title: '10', length: 22, position: { x: -40, y: -30 }, scale: 1.3, playback: false, speed: 0.3, hue: 0, },
+    { title: 'A', length: 30, position: { x: -30, y: 0 }, scale: 1.1, playback: false, speed: 0.3, hue: 0, },
+    { title: 'bird', length: 20, position: { x: 0, y: 10 }, scale: 1, playback: false, speed: 0.31, hue: 0, },
+    { title: 'boy', length: 23, position: { x: 25, y: 0 }, scale: 1.05, playback: false, speed: 0.31, hue: 60, },
+    { title: 'dragon', length: 24, position: { x: -65, y: -50 }, scale: 1.5, playback: true, speed: 0.31, hue: 0, },
+    { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35, playback: true, speed: 0.5, hue: -70, },
+    { title: 'wild', length: 17, position: { x: -30, y: -50 }, scale: 1.4, playback: false, speed: 0.1, hue: 0, },
+    { title: 'J', length: 26, position: { x: 0, y: 0 }, scale: 1, playback: false, speed: 0.3, hue: 0, },
+    { title: 'K', length: 26, position: { x: 0, y: 0 }, scale: 1, playback: false, speed: 0.3, hue: 0, },
+    { title: 'Q', length: 28, position: { x: -20, y: 0 }, scale: 1.1, playback: false, speed: 0.3, hue: 0, },
     // { title: 'sun', length: 29, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
     // { title: 'triangle', length: 18, position: { x: 0, y: 0 }, scale: 1, speed: 1 },
 ]
@@ -148,15 +146,28 @@ export const slotReels = [
 
 export const show_dialog = (info_dialog_wrapper: PIXI.Container, close_button_sprite: PIXI.Sprite) => {
     if (info_dialog_wrapper.alpha === 0) {
+        info_dialog_wrapper.y = 0
         tweenTo(info_dialog_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
         close_button_sprite.eventMode = 'static'
     } else if (info_dialog_wrapper.alpha === 1) {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
+        tweenTo(info_dialog_wrapper, 'y', 0, 10000, 500, rectout(1), null, null)
         close_button_sprite.eventMode = 'none'
     }
 }
-export const tweening: any = [];
-export function tweenTo(object: any, property: any, propertyBeginValue: any, target: any, time: any, easing: any, onchange: any, oncomplete: any) {
+export const allTweenings: tweenType[] = [];
+export const reelTweenings: tweenType[] = [];
+export function tweenTo(
+    object: Object,
+    property: string,
+    propertyBeginValue: number,
+    target: number,
+    time: number,
+    easing: (t: number) => number,
+    change: (() => Promise<void>) | null,
+    complete: (() => Promise<void>) | null,
+    willCreateReelTweening: boolean = false
+) {
     const tween = {
         object,
         property,
@@ -164,21 +175,27 @@ export function tweenTo(object: any, property: any, propertyBeginValue: any, tar
         target,
         easing,
         time,
-        change: onchange,
-        complete: oncomplete,
+        change,
+        complete,
         start: Date.now(),
+        uuid:uuidv4(),
+        flow:!willCreateReelTweening
     };
 
-    tweening.push(tween);
+    if (willCreateReelTweening) reelTweenings.push(tween);
+    allTweenings.push(tween);
     return tween;
 }
 export function lerp(a1: any, a2: any, t: any) {
     return a1 * (1 - t) + a2 * t;
 }
-export function backout(b: any) {
+export function backout(b: number) {
     // return (t: any) => (t * t * ((amount + 1) * t + amount));
-    return (t: any) => (Math.sin(b * Math.PI * t - Math.PI / 2) + 1) / (Math.sin(b * Math.PI - Math.PI / 2) + 1)
+    return (t: number) => (Math.sin(b * Math.PI * t - Math.PI / 2) + 1) / (Math.sin(b * Math.PI - Math.PI / 2) + 1)
 }
 export function fadeInOut() {
-    return (t: any) => 1 - Math.sin(t * Math.PI)
+    return (t: number) => 1 - Math.sin(t * Math.PI)
+}
+export function rectout(b: number) {
+    return (t: number) => (t < 0.99) ? 1 : 0
 }

@@ -6,9 +6,9 @@ import { getCheckSprite } from "../../utils/check";
 import { getInputSprite } from "../../utils/input";
 import keyboard from "../../utils/keyboard";
 import { getReelContainerMask } from "../../utils/mask";
-import { getSliderSprite } from "../../utils/slider";
-import { backout, show_dialog, slotAnimateUrls, slotReels, tweenTo } from "../../utils/urls";
-import { bubble_animate, calculateScale, critical_ratio, fire_animate, gen_autospin_item, gen_card_animated_sprite, playSound, setVolume, stopSound } from "../../utils/utils";
+import { getInfoContentSprite, getSliderSprite } from "../../utils/slider";
+import { backout, rectout, show_dialog, slotAnimateUrls, slotReels, tweenTo, allTweenings, reelTweenings } from "../../utils/urls";
+import { animateReels, bubble_animate, calculateScale, critical_ratio, fire_animate, gen_autospin_item, gen_card_animated_sprite, playSound, setVolume, stopSound } from "../../utils/utils";
 import { gameParamsType } from "../../store/types";
 import axios from "axios";
 
@@ -20,10 +20,13 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     playSound('bg')
 
     const gameBoardSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/background.png'))
-    // gameBoardSprite.position.set(-100, 0)
+    gameBoardSprite.position.set(-50, 0)
     appStage.addChild(gameBoardSprite);
 
     const backgroundFooterSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/background-footer.png'))
+    const backgroundFooterSpriteChildrenWrapper = new PIXI.Container()
+    backgroundFooterSprite.addChild(backgroundFooterSpriteChildrenWrapper)
+    backgroundFooterSpriteChildrenWrapper.position.set(50, 0)
     // backgroundFooterSprite.anchor.set(100 / backgroundFooterSprite.width, 0)
     app.stage.addChild(backgroundFooterSprite);
 
@@ -40,14 +43,14 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     const mobile_win_hold_spin_text_down = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 32, fill: 0xf7d245 });
     const balance_text_static = new PIXI.Text('Balance', { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
     const balance_text = new PIXI.Text(gameParams.balance, { fontFamily: 'Arial', fontSize: 32, fill: 0xffffff });
-    backgroundFooterSprite.addChild(bet_text_static)
-    backgroundFooterSprite.addChild(bet_text)
-    backgroundFooterSprite.addChild(balance_text_static)
-    backgroundFooterSprite.addChild(balance_text)
-    backgroundFooterSprite.addChild(total_bet_text)
-    backgroundFooterSprite.addChild(total_bet_text_static)
-    backgroundFooterSprite.addChild(win_hold_spin_text)
-    backgroundFooterSprite.addChild(mobile_win_hold_spin_text_wrapper)
+    backgroundFooterSpriteChildrenWrapper.addChild(bet_text_static)
+    backgroundFooterSpriteChildrenWrapper.addChild(bet_text)
+    backgroundFooterSpriteChildrenWrapper.addChild(balance_text_static)
+    backgroundFooterSpriteChildrenWrapper.addChild(balance_text)
+    backgroundFooterSpriteChildrenWrapper.addChild(total_bet_text)
+    backgroundFooterSpriteChildrenWrapper.addChild(total_bet_text_static)
+    backgroundFooterSpriteChildrenWrapper.addChild(win_hold_spin_text)
+    backgroundFooterSpriteChildrenWrapper.addChild(mobile_win_hold_spin_text_wrapper)
     const bg_mobile_win_hold_spin_text = new PIXI.Graphics()
     mobile_win_hold_spin_text_wrapper.addChild(bg_mobile_win_hold_spin_text)
     mobile_win_hold_spin_text_wrapper.addChild(mobile_win_hold_spin_text_upper)
@@ -158,6 +161,9 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             const cardSprite = new PIXI.Container();
             const cardBackSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/card-back.png'))
             const url_id = slotReels[i][j];//Math.floor(Math.random() * slotAnimateUrls.length)
+            const colorMatrix = new PIXI.ColorMatrixFilter();
+            colorMatrix.hue(slotAnimateUrls[url_id].hue, false);
+            cardBackSprite.filters = [colorMatrix]
 
             const cardSymbolWrapperSprite = new PIXI.Container()
             const cardSymbolSprite = gen_card_animated_sprite(slotAnimateUrls[url_id])
@@ -186,6 +192,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
 
     const info_dialog_wrapper = new PIXI.Container()
+    info_dialog_wrapper.position.set(0, 10000)
     info_dialog_wrapper.alpha = 0
     const scroll_bar_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/scroll-bar.png'))
     const close_button_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-close.png'))
@@ -204,7 +211,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
 
 
-    const info_content_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/info-content.png'))
+    const info_content_sprite = getInfoContentSprite(scroll_bar_sprite)
     // const info_bg_sprite_mask = getInfoMask()
     // info_content_sprite.mask = info_bg_sprite_mask
     info_dialog_wrapper.addChild(info_bg_sprite)
@@ -221,15 +228,15 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
 
     const scroll_bar_init_y = 150
-    const scroll_bar_end_y = 800
-    close_button_sprite.position.set(1590, 80)
+    close_button_sprite.position.set(1550, 80)
     close_button_sprite.eventMode = 'none';
     close_button_sprite.cursor = 'pointer';
     close_button_sprite.on('pointerdown', () => {
         tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
+        tweenTo(info_dialog_wrapper, 'y', 0, 10000, 500, rectout(1), null, null)
         close_button_sprite.eventMode = 'none';
     })
-    scroll_bar_sprite.position.set(1600, scroll_bar_init_y)
+    scroll_bar_sprite.position.set(1560, scroll_bar_init_y)
 
     app.stage.addChild(info_dialog_wrapper);
     // info_dialog_wrapper.width = 1920;
@@ -244,13 +251,15 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     // });
     // appStage.addChild(scrollBox);
     function handleMouseWheel(e: WheelEvent) {
+        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * critical_ratio) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
+        const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height) * info_dialog_wrapper_scale_ratio
         const deltaY = e.deltaY;
         info_content_sprite.y -= deltaY * 0.5;
         if (info_content_sprite.y > 0) info_content_sprite.y = 0
-        console.log(info_content_sprite.y)
-        const info_content_sprite_height = app.screen.width + 500
+        const info_content_sprite_height = Math.max(info_content_sprite.height - app.screen.height / APP_SCALE, 0)
         if (info_content_sprite.y < -info_content_sprite_height) info_content_sprite.y = -info_content_sprite_height
-        scroll_bar_sprite.y = scroll_bar_init_y - (scroll_bar_end_y - scroll_bar_init_y) * info_content_sprite.y / info_content_sprite_height
+        // scroll_bar_sprite.y = scroll_bar_init_y - (scroll_bar_end_y - scroll_bar_init_y) * info_content_sprite.y / info_content_sprite_height
+        scroll_bar_sprite.y = (app.screen.height / APP_SCALE * (-info_content_sprite.y / (info_content_sprite_height + 0.001)) + scroll_bar_init_y) * 0.8
     }
 
     app.view.addEventListener("wheel", handleMouseWheel);
@@ -298,7 +307,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     // status_bar_wrapper.addChild(info_help_group)
     status_bar_wrapper.position.set(225, 10)
     status_bar_wrapper.pivot.set(0, 80)
-    backgroundFooterSprite.addChild(status_bar_wrapper)
+    backgroundFooterSpriteChildrenWrapper.addChild(status_bar_wrapper)
     info_at_statusbarSprite.eventMode = status_bar_wrapper.eventMode = 'static';
     info_at_statusbarSprite.cursor = 'pointer';
     // status_bar_wrapper.interactive = false
@@ -419,7 +428,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
     const setting_at_status_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-setting-empty.png'))
     setting_at_status_sprite.position.set(275, 15)
-    backgroundFooterSprite.addChild(setting_at_status_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(setting_at_status_sprite)
     setting_at_status_sprite.eventMode = 'static';
     setting_at_status_sprite.cursor = 'pointer';
     const setting_sprite_on_pointerdown = () => {
@@ -500,7 +509,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         })
         auto_spin_wrapper.addChild(button_auto_spin_item)
     })
-    backgroundFooterSprite.addChild(auto_spin_wrapper)
+    backgroundFooterSpriteChildrenWrapper.addChild(auto_spin_wrapper)
     const button_auto_spin_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-auto-spin-empty.png'))
     button_auto_spin_sprite.position.set(1460, 35)
     button_auto_spin_sprite.eventMode = 'static';
@@ -547,10 +556,10 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         }
     }
     button_auto_spin_sprite.on('pointerdown', button_auto_spin_sprite_on_pointerdown)
-    backgroundFooterSprite.addChild(button_auto_spin_sprite);
+    backgroundFooterSpriteChildrenWrapper.addChild(button_auto_spin_sprite);
     const auto_spin_val_text_sprite = new PIXI.Text("", { fontFamily: 'Arial', fontSize: 28, fill: 0xffffff });
     auto_spin_val_text_sprite.anchor.set(0.5)
-    backgroundFooterSprite.addChild(auto_spin_val_text_sprite);
+    backgroundFooterSpriteChildrenWrapper.addChild(auto_spin_val_text_sprite);
 
     const button_spin_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-spin-empty.png'))
     button_spin_sprite.position.set(1547, 25)
@@ -563,13 +572,13 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     }).on('pointerout', () => {
         button_spin_sprite.texture = PIXI.Texture.from('/assets/image/button-spin-empty.png')
     })
-    backgroundFooterSprite.addChild(button_spin_sprite);
+    backgroundFooterSpriteChildrenWrapper.addChild(button_spin_sprite);
 
 
 
     const settings_list_sprite = new PIXI.Sprite()
 
-    backgroundFooterSprite.addChild(settings_list_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(settings_list_sprite)
     const bg_setting_list_sprite = new PIXI.Graphics()
     bg_setting_list_sprite.eventMode = 'static'
     bg_setting_list_sprite.cursor = 'pointer';
@@ -647,7 +656,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
     const button_wallet_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-wallet-empty.png'))
     button_wallet_sprite.position.set(334, 15)
-    backgroundFooterSprite.addChild(button_wallet_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(button_wallet_sprite)
     button_wallet_sprite.eventMode = 'static';
     button_wallet_sprite.cursor = 'pointer';
     button_wallet_sprite.on('pointerdown', () => {
@@ -660,7 +669,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
     const button_bet_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-bet.png'))
     button_bet_sprite.position.set(550, 10)
-    backgroundFooterSprite.addChild(button_bet_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(button_bet_sprite)
     button_bet_sprite.eventMode = 'static';
     button_bet_sprite.cursor = 'pointer';
     const button_bet_sprite_on_pointerdown = () => {
@@ -706,7 +715,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     button_bet_sprite.on('pointerdown', button_bet_sprite_on_pointerdown)
     const bet_up_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-up-down.png'))
     bet_up_sprite.position.set(785, 18)
-    backgroundFooterSprite.addChild(bet_up_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(bet_up_sprite)
     bet_up_sprite.eventMode = 'static';
     bet_up_sprite.cursor = 'pointer';
     bet_up_sprite.on('pointerdown', () => {
@@ -716,7 +725,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     })
     const bet_down_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-up-down.png'))
     bet_down_sprite.position.set(785, 61)
-    backgroundFooterSprite.addChild(bet_down_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(bet_down_sprite)
     bet_down_sprite.eventMode = 'static';
     bet_down_sprite.cursor = 'pointer';
     bet_down_sprite.on('pointerdown', () => {
@@ -809,14 +818,14 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         bline_val_text.text = new_bline
         total_bet_text.text = String(new_bline * parseInt(bet_text.text))
     })
-    backgroundFooterSprite.addChild(bline_wrapper);
+    backgroundFooterSpriteChildrenWrapper.addChild(bline_wrapper);
     // appStage.addChild(bline_wrapper)
 
     // ! bline mobile list sprite
     const bline_list_sprite = new PIXI.Sprite()
     bline_list_sprite.pivot.set(200, 800)
     bline_list_sprite.scale.set(0)
-    backgroundFooterSprite.addChild(bline_list_sprite)
+    backgroundFooterSpriteChildrenWrapper.addChild(bline_list_sprite)
     const bg_bline_list_sprite = new PIXI.Graphics()
     bg_bline_list_sprite.eventMode = 'static'
     bg_bline_list_sprite.cursor = 'pointer';
@@ -872,12 +881,10 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     // ! bline mobile list sprite
     (Global_Vars.info_dialog_wrapper_resize_callback = function () {
         const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height)
-        info_dialog_wrapper.scale.set(APP_SCALE)
-        info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
         // info_dialog_wrapper.y = (app.screen.height - App_Dimension.height * APP_SCALE) / 2
         backgroundFooterSprite.scale.set(APP_SCALE)
         const control_pos_web = (app.screen.width < app.screen.height * critical_ratio) ? backgroundFooterSprite.height : 0
-        backgroundFooterSprite.position.set((app.screen.width - App_Dimension.width * APP_SCALE) / 2, app.screen.height - backgroundFooterSprite.height + control_pos_web)
+        backgroundFooterSprite.position.set((app.screen.width - (App_Dimension.width + 100) * APP_SCALE) / 2, app.screen.height - backgroundFooterSprite.height + control_pos_web)
         // ! backgroundFooterSprite.position.set(-100, app.screen.height * (1 + APP_SCALE) / 2 / APP_SCALE - backgroundFooterSprite.height)
         mobile_background_header_sprite.scale.set(app.screen.width / 750)
         mobile_background_footer_sprite.scale.set(Math.min(1, app.screen.width / 750))
@@ -886,6 +893,8 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         mobile_background_footer_sprite.position.set((app.screen.width - mobile_background_footer_sprite.width) / 2, app.screen.height - mobile_background_footer_sprite.height + control_pos_mobile)
         mobile_background_header_sprite.position.set((app.screen.width - App_Dimension.width * APP_SCALE) / 2, -control_pos_mobile)
         if (app.screen.width > app.screen.height * critical_ratio) {
+            info_dialog_wrapper.scale.set(APP_SCALE)
+            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
             balance_text.position.set(360, 70)
             balance_text.scale.set(1)
             balance_text_static.position.set(280, 85)
@@ -911,6 +920,8 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             mobile_win_hold_spin_text_wrapper.position.set(750, 1650)
             setting_modal.scale.set(1)
         } else {
+            info_dialog_wrapper.scale.set(APP_SCALE * game_global_vars.info_dialog_wrapper_scale_ratio)
+            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE * game_global_vars.info_dialog_wrapper_scale_ratio) / 2
             balance_text.position.set(230 - 100, 70 - 600)
             balance_text.scale.set(2)
             balance_text_static.position.set(280 - 40, 85 - 680)
@@ -945,15 +956,17 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     let cur_timing_counter = 0
     async function reelsComplete() {
 
-        const result: Array<Array<number>> = []
-        for (let i = 0; i < 5; i++) {
-            const reel_arr = []
-            const cur_pos = Math.round((reels[i].position + 400) % reels[i].animated_symbols.length)
-            for (let j = 1; j < slotReels[i].length; j++) {
-                reel_arr.push(reels[i].url_ids[(j - cur_pos + 400) % 4])
-            }
-            result.push(reel_arr)
-        }
+        // const result: Array<Array<number>> = []
+        // for (let i = 0; i < 5; i++) {
+        //     const reel_arr = []
+        //     const cur_pos = Math.round((reels[i].position + 400) % reels[i].animated_symbols.length)
+        //     for (let j = 1; j < slotReels[i].length; j++) {
+        //         reel_arr.push(reels[i].url_ids[(j - cur_pos + 400) % 4])
+        //     }
+        //     result.push(reel_arr)
+        // }
+
+        balance_text.text = game_global_vars.wonRes.account.balance
 
         // let earned = 0;
         // await sleep(1000)
@@ -1130,6 +1143,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             tweenTo(bline_list_sprite.scale, 'y', scale, 0, 500, backout(1), null, null)
         }
 
+        animateReels(reels, reelsComplete)
         // const { data: { hash } } = await axios.post('/api/user/games/create', {
         //     game_package_id: "slots",
         //     client_seed: Math.ceil(Math.random() * 99999999)
@@ -1177,20 +1191,11 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
         // const cur_bal = parseInt(balance_text.text)
         // const cur_total_bet = parseInt(total_bet_text.text)
-        balance_text.text = wonRes.account.balance
-
-
+        // balance_text.text = wonRes.account.balance
         for (let i = 0; i < reels.length; i++) {
-            const r = reels[i];
-            // const extra = Math.floor(Math.random() * 3);
-            // const target = r.position + 50 + i * 5 + extra;
-            const target = -wonRes.gameable.reels[i] + 1 + r.animated_symbols.length * 10;
-            const time = 800 + i * 500;
-
-            tweenTo(r, 'position', r.position % r.animated_symbols.length, target, time, backout(1.1), null, i === reels.length - 1 ? reelsComplete : null);
-            // for (let j = 0; j < slotReels[i]; j++) {
-            //     r.cards[j].alpha = 1
-            // }
+            const index = allTweenings.findIndex((item) => item.uuid === reelTweenings[i].uuid)
+            allTweenings[index].target += -wonRes.gameable.reels[i] + 1
+            allTweenings[index].flow = true
         }
         // game_global_vars.won_lines = []
     }
