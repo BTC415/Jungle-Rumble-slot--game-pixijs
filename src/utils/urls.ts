@@ -7,6 +7,7 @@ export const assetUrls = [
     '/assets/image/torch-base.png',
     '/assets/image/card-back.png',
     '/assets/image/info-content.png',
+    '/assets/image/info-content-mobile.png',
     '/assets/image/button-spin.png',
     '/assets/image/button-spin-empty.png',
     '/assets/image/button-auto-spin-empty.png',
