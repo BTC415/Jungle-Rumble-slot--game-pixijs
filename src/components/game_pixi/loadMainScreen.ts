@@ -107,7 +107,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         startPlay()
     })
     button_mobile_i.on('pointerdown', () => {
-        info_content_sprite.texture = PIXI.Texture.from('/assets/image/info-content.png')
+        info_content_sprite.texture = PIXI.Texture.from('/assets/image/info-content-mobile.png')
         display_win_text.alpha = 0
         show_dialog(info_dialog_wrapper, close_button_sprite)
     })
@@ -269,40 +269,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     const info_at_statusbarSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-info-bar-empty.png'))
     info_at_statusbarSprite.position.set(-9, 0)
     const status_bar_wrapper = new PIXI.Container();
-    // const info_help_group = new PIXI.Container();
-    // info_help_group.scale.set(0)
-    // const infoButtonSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-info.png'))
-    // const helpButtonSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-help.png'))
-
-
-
-
-
-
-    // infoButtonSprite.eventMode = 'static';
-    // infoButtonSprite.cursor = 'pointer';
-    // infoButtonSprite.on('pointerdown', () => {
-    //   info_content_sprite.texture = PIXI.Texture.from('/assets/image/info-content.png')
-    //   display_win_text.alpha = 0
-    //   if (info_dialog_wrapper.alpha === 0) {
-    //     tweenTo(info_dialog_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
-    //     close_button_sprite.eventMode = 'static'
-    //   }
-    // })
-    // helpButtonSprite.eventMode = 'static';
-    // helpButtonSprite.cursor = 'pointer';
-    // helpButtonSprite.on('pointerdown', () => {
-    //   display_win_text.alpha = 0
-    //   info_content_sprite.texture = PIXI.Texture.from('/assets/image/help-content.png')
-    //   if (info_dialog_wrapper.alpha === 0) {
-    //     tweenTo(info_dialog_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
-    //     close_button_sprite.eventMode = 'static'
-    //   }
-    // })
-    // helpButtonSprite.position.set(0, 40)
-    // info_help_group.addChild(infoButtonSprite)
-    // info_help_group.addChild(helpButtonSprite)
-
+    
     status_bar_wrapper.addChild(info_at_statusbarSprite)
     // status_bar_wrapper.addChild(info_help_group)
     status_bar_wrapper.position.set(225, 10)

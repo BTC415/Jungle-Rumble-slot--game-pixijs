@@ -8,11 +8,7 @@ loadingText.position.set(980, 500)
 const loadingSpriteBackSprite = new PIXI.Graphics()
 appStage.addChild(loadingSpriteBackSprite)
 loadingSpriteBackSprite.lineStyle(0);
-loadingSpriteBackSprite.beginFill(0x0, 1);
-loadingSpriteBackSprite.moveTo(-4000, -6000);
-loadingSpriteBackSprite.lineTo(5000, -6000);
-loadingSpriteBackSprite.lineTo(5000, 7000);
-loadingSpriteBackSprite.lineTo(-4000, 7000);
+loadingSpriteBackSprite.beginFill(0x0, 1).drawRect(-4000, -6000, 9000, 13000);
 appStage.addChild(loadingText);
 PIXI.Assets.load(['/assets/image/loading.json']).then(() => {
   if (Global_Vars.initLoaded) return

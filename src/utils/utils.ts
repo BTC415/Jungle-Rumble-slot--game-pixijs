@@ -64,11 +64,7 @@ export const gen_card_animated_sprite = (item: slotAnimateUrlType) => {
 export const gen_autospin_item = (text: string) => {
     const button_auto_spin_item = new PIXI.Graphics()
     button_auto_spin_item.lineStyle(0);
-    button_auto_spin_item.beginFill(0x444444, 1);
-    button_auto_spin_item.moveTo(0, 0);
-    button_auto_spin_item.lineTo(70, 0);
-    button_auto_spin_item.lineTo(70, 50);
-    button_auto_spin_item.lineTo(0, 50);
+    button_auto_spin_item.beginFill(0x444444, 1).drawRect(0, 0, 70, 50);
     const button_auto_spin_item_static_text = new PIXI.Text(text, { fontFamily: 'Arial', fontSize: 20, fill: 0xffffff })
     button_auto_spin_item_static_text.anchor.set(0.5)
     button_auto_spin_item_static_text.position.set(button_auto_spin_item.width / 2, button_auto_spin_item.height / 2)
