@@ -61,9 +61,7 @@ const BetHistory = () => {
     ];
     return (
         <div style={{ height: '100vh', backgroundColor: 'black', padding: '10px 40px', color: 'white',overflowY:'auto' }}>
-            <a href={`/?token=${useGameParams().token}`}>
-                <img alt='logo' src='/assets/image/logo.png' />
-            </a>
+            
 
             <div style={{ display: 'flex', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
                 <a onClick={() => window.history.back()} style={{ cursor: 'pointer', padding: '12px' }}>&larr;</a>

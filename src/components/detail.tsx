@@ -23,9 +23,7 @@ const Detail = () => {
     // const slotInfo = JSON.parse(localStorage.getItem('slotinfo') || '[]').filter((item: any) => item.id == id) || []
     return (
         <div style={{ height: '100vh', backgroundColor: 'black', padding: '10px 40px', color: 'white' }}>
-            <a href="/">
-                <img alt='logo' src='/assets/image/logo.png' />
-            </a>
+            
             <div style={{ maxWidth: '600px', margin: '20px auto' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <a onClick={() => window.history.back()} style={{ cursor: 'pointer', padding: '12px' }}>&larr;</a>
