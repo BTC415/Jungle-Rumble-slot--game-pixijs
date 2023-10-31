@@ -61,9 +61,9 @@ export const assetUrls = [
 export const slotAnimateUrls: slotAnimateUrlType[] = [
     { title: '10', length: 22, position: { x: -40, y: -30 }, scale: 1.3, playback: false, speed: 0.3, hue: 0, },
     { title: 'A', length: 30, position: { x: -30, y: 0 }, scale: 1.1, playback: false, speed: 0.3, hue: 0, },
-    { title: 'bird', length: 20, position: { x: 0, y: 10 }, scale: 1, playback: false, speed: 0.31, hue: 0, },
-    { title: 'boy', length: 23, position: { x: 25, y: 0 }, scale: 1.05, playback: false, speed: 0.31, hue: 60, },
-    { title: 'dragon', length: 24, position: { x: -65, y: -50 }, scale: 1.5, playback: true, speed: 0.31, hue: 0, },
+    { title: 'bird', length: 30, position: { x: 0, y: 10 }, scale: 1, playback: false, speed: 0.31, hue: 0, },
+    { title: 'boy', length: 14, position: { x: -12, y: -8 }, scale: 1.08, playback: false, speed: 0.31, hue: 60, },
+    { title: 'dragon', length: 24, position: { x: -20, y: 0 }, scale: 1.15, playback: true, speed: 0.31, hue: 0, },
     { title: 'girl', length: 26, position: { x: -30, y: -75 }, scale: 1.35, playback: true, speed: 0.5, hue: -70, },
     { title: 'wild', length: 17, position: { x: -30, y: -50 }, scale: 1.4, playback: false, speed: 0.1, hue: 0, },
     { title: 'J', length: 26, position: { x: 0, y: 0 }, scale: 1, playback: false, speed: 0.3, hue: 0, },

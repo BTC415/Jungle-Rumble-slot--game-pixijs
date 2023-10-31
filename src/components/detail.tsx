@@ -18,24 +18,51 @@ const Detail = () => {
     React.useEffect(() => {
         axios.get(`/api/history/games/${id}/details`).then(({ data: { game } }) => {
             setData(game)
+            console.log(game)
         })
     }, [])
     // const slotInfo = JSON.parse(localStorage.getItem('slotinfo') || '[]').filter((item: any) => item.id == id) || []
     return (
-        <div style={{ height: '100vh', backgroundColor: 'black', padding: '10px 40px', color: 'white' }}>
-            
-            <div style={{ maxWidth: '600px', margin: '20px auto' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <a onClick={() => window.history.back()} style={{ cursor: 'pointer', padding: '12px' }}>&larr;</a>
-                    <h1>Bet Info Detail</h1>
-                </div>
-                <DetailRow name='Round ID' val={data?.id} />
-                <DetailRow name='Game' val='Slot Game' />
-                <DetailRow name='Bet' val={data?.bet} />
-                <DetailRow name='Win' val={data?.win} />
-                <DetailRow name='Profit' val={data?.profit} />
-                {data && data.gameable.win_titles && Object.keys(data.gameable.win_titles).map((item: any, i: number) => <DetailRow key={i} val={`${data.gameable.win_titles[item]}`} name={item} />)}
+        <div className='min-h-screen overflow-y-auto'>
 
+            <div className="user-history w-50">
+                <div className="user-data">
+                    <div className="data-header">
+                        <a ><i onClick={() => window.history.back()} className="fa-solid fa-arrow-left"></i></a> Game {data?.id}
+                    </div>
+                    <div className="data-body">
+                        <div className="table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Round Id</td>
+                                        <td>{data?.id}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Variation	</td>
+                                        <td>Fruit Slots</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lines	</td>
+                                        <td>{data?.gameable.lines}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Win</td>
+                                        <td>{data?.win}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created at</td>
+                                        <td>{data?.created_at}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Updated at</td>
+                                        <td>{data?.updated_at}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
