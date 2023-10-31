@@ -1,14 +1,6 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-const DetailRow = ({ name, val }: { name: string, val: string }) => {
-    return (
-        <div style={{ borderBottom: '1px solid #333', display: 'flex', justifyContent: 'space-between', width: '100%', margin: '20px 0' }}>
-            <div>{name}</div>
-            <div>{val}</div>
-        </div>
-    )
-}
 const Detail = () => {
     const { id } = useParams()
     const [data, setData] = React.useState<any>(null)
