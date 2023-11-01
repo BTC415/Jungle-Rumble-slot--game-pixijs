@@ -383,7 +383,7 @@
   resolved "https://registry.npmjs.org/@pixi/constants/-/constants-7.3.1.tgz"
   integrity sha512-Xq8tyUcVwpkPge9XGMZl9gzzNdNuKmjmxulJ9jNk9Zbf2QPVunn21WWZYBl4TO0mleUhT8wNnbXXn5CAbMgwFA==
 
-"@pixi/core@^7.0.0", "@pixi/core@^7.2.3", "@pixi/core@7.3.1":
+"@pixi/core@^7.0.0", "@pixi/core@^7.0.0-X", "@pixi/core@^7.2.3", "@pixi/core@7.3.1":
   version "7.3.1"
   resolved "https://registry.npmjs.org/@pixi/core/-/core-7.3.1.tgz"
   integrity sha512-LEASg6x2wp46y2WmN227K8X3vQKU0KxflrYGgj/o573OYSpEJkmY0WMoEInTUXmhCVLOHPcnBde5YDu0JmKsjQ==
@@ -417,6 +417,11 @@
   version "7.3.1"
   resolved "https://registry.npmjs.org/@pixi/extract/-/extract-7.3.1.tgz"
   integrity sha512-kuB2gi5JHdBK0WOvvbKZiVQkQFqRZehJlDbZaiaWcgb9G9B/8M/V+fodXS/WsmTNxOegN98igkSTpD2k1dYPnA==
+
+"@pixi/filter-adjustment@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.npmjs.org/@pixi/filter-adjustment/-/filter-adjustment-5.1.1.tgz"
+  integrity sha512-AUHe03rmqXwV1ylAHq62t19AolPWOOYomCcL+Qycb1tf+LbM8FWpGXC6wmU1PkUrhgNc958uM9TrA9nRpplViA==
 
 "@pixi/filter-alpha@7.3.1":
   version "7.3.1"

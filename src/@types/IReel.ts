@@ -18,10 +18,12 @@ export type slotAnimateUrlType = {
     x: number,
     y: number
   },
-  scale: number,
+  scale: { x: number; y: number },
   playback: boolean,
   speed: number,
   hue: number,
+  saturate: number,
+  brightness: number
 }
 export type tweenType = {
   object: Object,
@@ -34,5 +36,5 @@ export type tweenType = {
   complete: ((t: any) => Promise<void>) | null,
   start: number,
   uuid: string,
-  flow:boolean
+  flow: boolean
 }

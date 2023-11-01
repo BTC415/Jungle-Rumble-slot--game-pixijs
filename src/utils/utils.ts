@@ -58,7 +58,7 @@ export const gen_card_animated_sprite = (item: slotAnimateUrlType) => {
     // cardAnimateSprite.play();
     appStage.addChild(cardAnimateSprite);
     cardAnimateSprite.position.set(item.position.x, item.position.y)
-    cardAnimateSprite.scale.set(item.scale)
+    cardAnimateSprite.scale.set(item.scale.x, item.scale.y)
     return cardAnimateSprite;
 }
 export const gen_autospin_item = (text: string) => {

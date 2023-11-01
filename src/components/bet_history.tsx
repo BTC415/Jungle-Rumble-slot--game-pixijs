@@ -91,7 +91,7 @@ const BetHistory = () => {
                                             .map((row, i) =>
                                                 <tr key={i}>
                                                     <td>{row.id}</td>
-                                                    <td>Fruits Slots</td>
+                                                    <td>Jungle Rumble</td>
                                                     <td>{row.bet.toFixed(2)}	</td>
                                                     <td>{row.win.toFixed(2)}</td>
                                                     <td>{row.profit.toFixed(2)}</td>

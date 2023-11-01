@@ -1,3 +1,4 @@
+import { PIXI } from "../renderer";
 
 export interface IConfig {
   width: number;
@@ -21,4 +22,5 @@ export type game_global_vars_type = {
   // }>,
   running: boolean,
   wonRes: any,
+  floatSymbolStore:(null | PIXI.AnimatedSprite)[][]
 }

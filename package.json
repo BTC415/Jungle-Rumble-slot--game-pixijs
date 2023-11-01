@@ -25,6 +25,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.12",
     "@mui/x-data-grid": "^6.16.1",
+    "@pixi/filter-adjustment": "^5.1.1",
     "@pixi/sound": "^5.2.1",
     "@pixi/ui": "^0.9.0",
     "axios": "^1.5.0",

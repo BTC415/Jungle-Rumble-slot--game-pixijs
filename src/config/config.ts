@@ -17,4 +17,11 @@ export const game_global_vars: game_global_vars_type = {
   cur_bet_val: 0,
   running: false,
   wonRes: null,
+  floatSymbolStore:[
+    [null,null,null],
+    [null,null,null],
+    [null,null,null],
+    [null,null,null],
+    [null,null,null],
+  ]
 }

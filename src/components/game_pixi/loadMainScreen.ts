@@ -11,6 +11,7 @@ import { backout, rectout, show_dialog, slotAnimateUrls, slotReels, tweenTo, all
 import { animateReels, bubble_animate, calculateScale, critical_ratio, fire_animate, gen_autospin_item, gen_card_animated_sprite, playSound, setVolume, stopSound } from "../../utils/utils";
 import { gameParamsType } from "../../store/types";
 import axios from "axios";
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
 
 
 
@@ -140,6 +141,30 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
     const reels: IReel[] = []
 
+    const floatSymbols = () => {
+        for (let i = 0; i < reels.length; i++) {
+            const r = reels[i];
+            for (let j = 0; j < r.animated_symbols.length; j++) {
+                const rel_position = (r.position + j) % r.animated_symbols.length
+                if (rel_position > 0.9 && rel_position < 3.1) {
+                    const originalChild = reels[i].animated_symbols[j].getChildAt(0);
+                    originalChild.alpha = 0
+                    if (originalChild instanceof PIXI.AnimatedSprite) {
+                        const copiedChild = new PIXI.AnimatedSprite(originalChild.textures);
+
+                        copiedChild.position.copyFrom(floatContainerSprite.toLocal(originalChild.toGlobal(new PIXI.Point())));
+                        const calc_scale = calculateScale(originalChild)
+                        copiedChild.scale.set(calc_scale.x / appStage.scale.x, calc_scale.y / appStage.scale.y);
+                        copiedChild.animationSpeed = originalChild.animationSpeed
+                        copiedChild.tint = originalChild.tint;
+
+                        floatContainerSprite.addChild(copiedChild);
+                        game_global_vars.floatSymbolStore[i][Math.round(rel_position) - 1] = copiedChild
+                    }
+                }
+            }
+        }
+    }
     for (let i = 0; i < 5; i++) {
         const reel = new PIXI.Container();
         reel.x = i * 265
@@ -162,8 +187,19 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             const cardBackSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/card-back.png'))
             const url_id = slotReels[i][j];//Math.floor(Math.random() * slotAnimateUrls.length)
             const colorMatrix = new PIXI.ColorMatrixFilter();
-            colorMatrix.hue(slotAnimateUrls[url_id].hue, false);
-            cardBackSprite.filters = [colorMatrix]
+            colorMatrix.brightness(slotAnimateUrls[url_id].brightness, true);
+            colorMatrix.hue(slotAnimateUrls[url_id].hue, true);
+            // colorMatrix.saturate(slotAnimateUrls[url_id].saturate, true);
+            // cardBackSprite.filters = [colorMatrix]
+
+
+
+            const adjustmentFilter = new AdjustmentFilter({
+                saturation: slotAnimateUrls[url_id].saturate,
+            });
+
+
+            cardBackSprite.filters = [adjustmentFilter, colorMatrix];
 
             const cardSymbolWrapperSprite = new PIXI.Container()
             const cardSymbolSprite = gen_card_animated_sprite(slotAnimateUrls[url_id])
@@ -186,9 +222,9 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     }
     appStage.addChild(reelContainer)
 
-    const testContainerSprite = new PIXI.Container();
-    appStage.addChild(testContainerSprite)
-
+    const floatContainerSprite = new PIXI.Container();
+    appStage.addChild(floatContainerSprite)
+    floatSymbols()
 
 
     const info_dialog_wrapper = new PIXI.Container()
@@ -269,7 +305,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     const info_at_statusbarSprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-info-bar-empty.png'))
     info_at_statusbarSprite.position.set(-9, 0)
     const status_bar_wrapper = new PIXI.Container();
-    
+
     status_bar_wrapper.addChild(info_at_statusbarSprite)
     // status_bar_wrapper.addChild(info_help_group)
     status_bar_wrapper.position.set(225, 10)
@@ -937,7 +973,11 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
         // let earned = 0;
         // await sleep(1000)
-        testContainerSprite.removeChildren()
+        floatContainerSprite.removeChildren();
+        if (game_global_vars.auto_spin_val === 0) {
+            // setTimeout(floatSymbols, 100)
+            floatSymbols()
+        }
         // for (let i = 0; i < parseInt(bline_val_text.text); i++) {
         //     const pay_line = pay_table[i]
 
@@ -1017,19 +1057,18 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         if (game_global_vars.auto_spin_val > 0 || game_global_vars.auto_spin_val === -1) {
             if (game_global_vars.auto_spin_val > 0) game_global_vars.auto_spin_val--;
             if (game_global_vars.wonRes.win > 0) {
-                game_global_vars.running = false;
                 setTimeout(() => {
                     startPlay()
                 }, 4000)
             } else {
-                game_global_vars.running = false;
                 startPlay()
             }
         }
         if (game_global_vars.auto_spin_val === 0) {
-            game_global_vars.running = false;
-            button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = 'static'
+            button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = button_mobile_setting.eventMode = 'static'
         }
+        game_global_vars.running = false;
+        
     }
     async function startPlay() {
         if (game_global_vars.running) return;
@@ -1037,7 +1076,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         game_global_vars.running = true;
         game_global_vars.prev_won_line_index = -1
         game_global_vars.wonRes = null
-        testContainerSprite.removeChildren()
+        floatContainerSprite.removeChildren()
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < slotReels[i].length; j++) {
                 const animated_sprite = reels[i].animated_symbols[j].getChildAt(0) as PIXI.AnimatedSprite
@@ -1081,7 +1120,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             mobile_win_hold_spin_text_upper.text = "Hold spin"
             mobile_win_hold_spin_text_down.text = ""
         }
-        button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = 'none'
+        button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = button_mobile_setting.eventMode = 'none'
         game_global_vars.cur_bet_val = parseInt(bet_text.text)
         const scale = app.screen.width > app.screen.height * critical_ratio ? 1 : 2
         if (info_dialog_wrapper.alpha === 1) {
@@ -1120,7 +1159,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             "hash": gameParams.hash,//hash,//
             "bet": parseInt(bet_text.text),
             "lines": parseInt(bline_val_text.text),
-            "variation": 0,
+            "variation": 10,
             "slot_type": "fruits"
         })
         if (!status) {
@@ -1132,7 +1171,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 "hash": _hash,
                 "bet": parseInt(bet_text.text),
                 "lines": parseInt(bline_val_text.text),
-                "variation": 0,
+                "variation": 10,
                 "slot_type": "fruits"
             })
             status = _status
@@ -1150,7 +1189,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             "hash": hash,//gameParams.hash,//hash,//
             "bet": parseInt(bet_text.text),
             "lines": parseInt(bline_val_text.text),
-            "variation": 0,
+            "variation": 10,
         })
         game_global_vars.wonRes = wonRes
         console.log(wonRes)
@@ -1178,6 +1217,13 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 const relativePositionY = rel_position * App_Dimension.cardHeight;
                 const globalPosition = c.toGlobal(new PIXI.Point(0, relativePositionY));
                 c.position = (c.toLocal(globalPosition))
+                if (game_global_vars.running) {
+                    if (rel_position >= 4) {
+                        c.alpha = 0
+                    } else {
+                        c.alpha = 1
+                    }
+                }
                 // if (rel_position < 1 && (r.previousPosition + j) % r.animated_symbols.length > 3) {
                 //     const url_id = Math.floor(Math.random() * slotAnimateUrls.length)
 
@@ -1207,9 +1253,21 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         const won_line_index = Math.floor(cur_timing_counter / Math.PI / 2) % Object.keys(game_global_vars.wonRes.gameable.win_lines).length
         const won_line_key = Object.keys(game_global_vars.wonRes.gameable.win_lines)[won_line_index]
         const won_line = game_global_vars.wonRes.gameable.win_lines[won_line_key]
+
+        const prev_won_line_key = Object.keys(game_global_vars.wonRes.gameable.win_lines)[game_global_vars.prev_won_line_index]
+        const prev_won_line = game_global_vars.wonRes.gameable.win_lines[prev_won_line_key]
+
         display_win_text.text = game_global_vars.wonRes.gameable.wins.lines[won_line_key].win
         if (won_line_index !== game_global_vars.prev_won_line_index) {
-            testContainerSprite.removeChildren()
+            // floatContainerSprite.removeChildren()
+            for (let x = 0; x < 5; x++) {
+                for (let y = 0; y < 3; y++) {
+                    const fl_symbol = game_global_vars.floatSymbolStore[x][y]
+                    if (fl_symbol instanceof PIXI.AnimatedSprite) {
+                        fl_symbol.alpha = 0.2
+                    }
+                }
+            }
         }
         for (let j = 0; j < won_line.length; j++) {
             if (won_line[j] === null) continue
@@ -1222,22 +1280,33 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             reels[j].card_backs[won_line[j]].alpha = (Math.sin(cur_timing_counter * count) + 4) / 5
 
 
-            if (won_line_index !== game_global_vars.prev_won_line_index) {
-                // const pay_line = pay_table[won_line_index]
-                // const won_line_number = Math.round(pay_line[j] - reels[j].position + 4000 + 1) % 4;
-                const originalChild = reels[j].animated_symbols[won_line[j]].getChildAt(0);
-                originalChild.alpha = 0
-                if (originalChild instanceof PIXI.AnimatedSprite) {
-                    const copiedChild = new PIXI.AnimatedSprite(originalChild.textures);
+            if (!game_global_vars.running && won_line_index !== game_global_vars.prev_won_line_index) {
+                const floatedSymbol = game_global_vars.floatSymbolStore[j][(reels[j].position + won_line[j]) % reels[j].animated_symbols.length - 1]
 
-                    copiedChild.position.copyFrom(testContainerSprite.toLocal(originalChild.toGlobal(new PIXI.Point())));
-                    copiedChild.scale.set(calculateScale(originalChild).x / appStage.scale.x);
-                    copiedChild.animationSpeed = originalChild.animationSpeed
-                    copiedChild.tint = originalChild.tint;
+                const prev_floatedSymbol = !prev_won_line ? null : game_global_vars.floatSymbolStore[j][(reels[j].position + prev_won_line[j]) % reels[j].animated_symbols.length - 1]
 
-                    testContainerSprite.addChild(copiedChild);
-                    copiedChild.play()
+                if (floatedSymbol instanceof PIXI.AnimatedSprite) {
+                    if (prev_floatedSymbol instanceof PIXI.AnimatedSprite) {
+                        prev_floatedSymbol.gotoAndStop(0)
+                    }
+                    floatedSymbol.alpha = 1
+                    floatedSymbol.play()
                 }
+                // // const pay_line = pay_table[won_line_index]
+                // // const won_line_number = Math.round(pay_line[j] - reels[j].position + 4000 + 1) % 4;
+                // const originalChild = reels[j].animated_symbols[won_line[j]].getChildAt(0);
+                // originalChild.alpha = 0
+                // if (originalChild instanceof PIXI.AnimatedSprite) {
+                //     const copiedChild = new PIXI.AnimatedSprite(originalChild.textures);
+
+                //     copiedChild.position.copyFrom(floatContainerSprite.toLocal(originalChild.toGlobal(new PIXI.Point())));
+                //     copiedChild.scale.set(calculateScale(originalChild).x / appStage.scale.x);
+                //     copiedChild.animationSpeed = originalChild.animationSpeed
+                //     copiedChild.tint = originalChild.tint;
+
+                //     floatContainerSprite.addChild(copiedChild);
+                //     copiedChild.play()
+                // }
             }
 
 

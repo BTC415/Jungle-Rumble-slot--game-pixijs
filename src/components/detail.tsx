@@ -32,7 +32,7 @@ const Detail = () => {
                                     </tr>
                                     <tr>
                                         <td>Variation	</td>
-                                        <td>Fruit Slots</td>
+                                        <td>Jungle Rumble</td>
                                     </tr>
                                     <tr>
                                         <td>Lines	</td>

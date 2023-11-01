@@ -12,7 +12,12 @@ export function animateFromTweenLoop() {
     if (t.change) t.change(t);
     if (phase === 1) {
       (t.object as any)[t.property] = t.target;
-      if (t.complete) t.complete(t);
+
+      setTimeout(() => {
+        if (t.complete) {
+          t.complete(t)
+        }
+      }, 100);
       remove.push(t);
     }
   }
