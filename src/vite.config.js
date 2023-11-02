@@ -1,5 +1,4 @@
 export default {
-    publicDir: 'public',
-    base:'/'
+    publicDir: 'public'
   }
   
