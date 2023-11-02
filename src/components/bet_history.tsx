@@ -93,7 +93,7 @@ const BetHistory = () => {
                         <div className={`${loading ? "flex" : "hidden"} justify-center items-center absolute top-0 w-full h-full z-10 bg-black/50`}>
                             <img src="/assets/res/loading.gif" alt="loading..." width={120} height={120} />
                         </div>
-                        <div className="table-responsive overflow-auto" style={{ maxHeight: '70vh' }}>
+                        <div className="table-responsive overflow-auto" style={{ maxHeight: '60vh' }}>
                             <table>
                                 <thead className='sticky top-0 bg-black'>
                                     <tr>

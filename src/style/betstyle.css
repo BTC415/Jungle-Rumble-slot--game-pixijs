@@ -7,7 +7,8 @@ body{
 .user-history{
     width: 90%;
     margin: 0 auto;
-    margin-top: 30px;
+    padding-top: 30px;
+    height: 100vh;
 }
 .user-history.w-50{
     width: 50%;
@@ -162,7 +163,7 @@ body{
 @media (max-width:1000px){
     .user-history{
         width: 100%;
-        margin-top: 0;
+        padding-top: 0;
         
     }
     .user-history.w-50 {
