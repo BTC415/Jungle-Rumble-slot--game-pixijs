@@ -1,6 +1,6 @@
 import { NavigateFunction } from "react-router-dom";
 import { IReel } from "../../@types";
-import { App_Dimension, game_global_vars, winTextStyle } from "../../config";
+import { App_Dimension, gameMessageTextStyle, game_global_vars, winTextStyle } from "../../config";
 import { Global_Vars, PIXI, app, appStage } from "../../renderer";
 import { getCheckSprite } from "../../utils/check";
 import { getInputSprite } from "../../utils/input";
@@ -652,10 +652,16 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
 
     const display_win_text = new PIXI.Text('', winTextStyle);
+    const game_message_text = new PIXI.Text('', gameMessageTextStyle);
     appStage.addChild(display_win_text)
+    appStage.addChild(game_message_text)
     display_win_text.anchor.set(0.5)
     display_win_text.position.set(960, 480)
     display_win_text.alpha = 0
+
+    game_message_text.anchor.set(0.5)
+    game_message_text.position.set(960, 480)
+    game_message_text.alpha = 0
 
     const button_wallet_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-wallet-empty.png'))
     button_wallet_sprite.position.set(334, 15)
@@ -977,6 +983,8 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         if (game_global_vars.auto_spin_val === 0) {
             // setTimeout(floatSymbols, 100)
             floatSymbols()
+        } else if (game_global_vars.wonRes.win > 0) {
+            floatSymbols()
         }
         // for (let i = 0; i < parseInt(bline_val_text.text); i++) {
         //     const pay_line = pay_table[i]
@@ -1035,6 +1043,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         //     }
         // }
         if (game_global_vars.wonRes.win > 0) {
+
             win_hold_spin_text.text = "Total Win " + game_global_vars.wonRes.win
             mobile_win_hold_spin_text_upper.text = "Total Win"
             mobile_win_hold_spin_text_down.text = String(game_global_vars.wonRes.win)
@@ -1054,12 +1063,14 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         // localStorage.setItem('slotinfo', JSON.stringify(slot_infos))
         // balance_text.text = parseInt(balance_text.text) + game_global_vars.wonRes.win
         cur_timing_counter = 0
+        game_global_vars.running = false;
         if (game_global_vars.auto_spin_val > 0 || game_global_vars.auto_spin_val === -1) {
             if (game_global_vars.auto_spin_val > 0) game_global_vars.auto_spin_val--;
             if (game_global_vars.wonRes.win > 0) {
+                const won_line_count = Object.keys(game_global_vars.wonRes.gameable.wins.lines).length
                 setTimeout(() => {
                     startPlay()
-                }, 4000)
+                }, won_line_count * 3000)
             } else {
                 startPlay()
             }
@@ -1067,8 +1078,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         if (game_global_vars.auto_spin_val === 0) {
             button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = button_mobile_setting.eventMode = 'static'
         }
-        game_global_vars.running = false;
-        
+
     }
     async function startPlay() {
         if (game_global_vars.running) return;
@@ -1130,6 +1140,10 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         if (display_win_text.alpha === 1) {
             tweenTo(display_win_text, 'alpha', 1, 0, 500, backout(1), null, null)
         }
+        if (game_message_text.alpha === 1) {
+            tweenTo(game_message_text, 'alpha', 1, 0, 500, backout(1), null, null)
+        }
+
         if (setting_modal_wrapper.position.x === 0) {
             tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null);
             tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
@@ -1154,56 +1168,67 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         //     game_package_id: "slots",
         //     client_seed: Math.ceil(Math.random() * 99999999)
         // })
-        let hash = gameParams.hash
-        let { data: { status, message } } = await axios.post('/api/games/slots/play/verify', {
-            "hash": gameParams.hash,//hash,//
-            "bet": parseInt(bet_text.text),
-            "lines": parseInt(bline_val_text.text),
-            "variation": 10,
-            "slot_type": "fruits"
-        })
-        if (!status) {
-            const { data: { hash: _hash } } = await axios.post('/api/user/games/create', {
-                game_package_id: "slots",
-                client_seed: Math.ceil(Math.random() * 99999999)
-            })
-            let { data: { status: _status, message: _message } } = await axios.post('/api/games/slots/play/verify', {
-                "hash": _hash,
+        try {
+            let hash = gameParams.hash
+            let { data: { status, message } } = await axios.post('/api/games/slots/play/verify', {
+                "hash": gameParams.hash,//hash,//
                 "bet": parseInt(bet_text.text),
                 "lines": parseInt(bline_val_text.text),
                 "variation": 10,
                 "slot_type": "fruits"
             })
-            status = _status
-            message = _message
-            hash = _hash
-        }
-        if (!status) {
-            alert(message)
+            if (!status) {
+                const { data: { hash: _hash } } = await axios.post('/api/user/games/create', {
+                    game_package_id: "slots",
+                    client_seed: Math.ceil(Math.random() * 99999999)
+                })
+                let { data: { status: _status, message: _message } } = await axios.post('/api/games/slots/play/verify', {
+                    "hash": _hash,
+                    "bet": parseInt(bet_text.text),
+                    "lines": parseInt(bline_val_text.text),
+                    "variation": 10,
+                    "slot_type": "fruits"
+                })
+                status = _status
+                message = _message
+                hash = _hash
+            }
+            if (!status) {
+                game_message_text.text = message
+                allTweenings.splice(0)
+                tweenTo(game_message_text, 'alpha', 0, 1, 500, backout(1), null, null)
+                game_global_vars.running = false;
+                game_global_vars.wonRes = null;
+                // reelsComplete()
+                return
+            }
+            const { data: wonRes } = await axios.post('/api/games/slots/play', {
+                "hash": hash,//gameParams.hash,//hash,//
+                "bet": parseInt(bet_text.text),
+                "lines": parseInt(bline_val_text.text),
+                "variation": 10,
+            })
+            game_global_vars.wonRes = wonRes
+            console.log(wonRes)
+
+
+            // const cur_bal = parseInt(balance_text.text)
+            // const cur_total_bet = parseInt(total_bet_text.text)
+            // balance_text.text = wonRes.account.balance
+            for (let i = 0; i < reels.length; i++) {
+                const index = allTweenings.findIndex((item) => item.uuid === reelTweenings[i].uuid)
+                allTweenings[index].target += -wonRes.gameable.reels[i] + 1
+                allTweenings[index].flow = true
+            }
+            // game_global_vars.won_lines = []
+        } catch (error) {
+            game_message_text.text = "Unexpected Error"
+            allTweenings.splice(0)
+            tweenTo(game_message_text, 'alpha', 0, 1, 500, backout(1), null, null)
             game_global_vars.running = false;
             game_global_vars.wonRes = null;
-            reelsComplete()
-            return
         }
-        const { data: wonRes } = await axios.post('/api/games/slots/play', {
-            "hash": hash,//gameParams.hash,//hash,//
-            "bet": parseInt(bet_text.text),
-            "lines": parseInt(bline_val_text.text),
-            "variation": 10,
-        })
-        game_global_vars.wonRes = wonRes
-        console.log(wonRes)
 
-
-        // const cur_bal = parseInt(balance_text.text)
-        // const cur_total_bet = parseInt(total_bet_text.text)
-        // balance_text.text = wonRes.account.balance
-        for (let i = 0; i < reels.length; i++) {
-            const index = allTweenings.findIndex((item) => item.uuid === reelTweenings[i].uuid)
-            allTweenings[index].target += -wonRes.gameable.reels[i] + 1
-            allTweenings[index].flow = true
-        }
-        // game_global_vars.won_lines = []
     }
     app.ticker.add(() => {
         for (let i = 0; i < reels.length; i++) {

@@ -23,16 +23,24 @@ const BetHistory = () => {
     const [filterProfit, setFilterProfit] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
     const [count, setCount] = React.useState(0)
-    const [rows, setRows] = React.useState<any[]>([])
+    const [items, setItems] = React.useState<any[]>([])
     const [betPL, setBetPL] = React.useState<number>(0)
+    const [filteredItems, setFilteredItems] = React.useState<any[]>([])
+    const [slicedItems, setSlicedItems] = React.useState<any[]>([])
     React.useEffect(() => {
-        axios.get(`/api/history/user?page=${page}&items_per_page=${rowsPerPage}&sort_by=created_at&sort_direction=desc`).then(({ data }) => {
-            setRows(data.items)
-            setCount(data.count)
-            setBetPL(data.betPL)
-            console.log(data)
-        })
-    }, [page, rowsPerPage])
+        fetchAllData()
+    }, [])
+    React.useEffect(() => {
+        setFilteredItems(items.filter(row =>
+            compareDates(new Date(row.created_at), date) &&
+            compareProfit(row.profit, filterProfit)
+        ))
+    }, [date, filterProfit, items, rowsPerPage, page])
+    React.useEffect(() => {
+        setSlicedItems(filteredItems.slice((page - 1) * rowsPerPage, page * rowsPerPage))
+    }, [filteredItems])
+    React.useEffect(() => { setCount(filteredItems.length) }, [filteredItems])
+
     const token = useGameParams().token
     React.useEffect(() => {
         setTimeout(() => window.scrollTo(0, 0), 1000)
@@ -43,6 +51,16 @@ const BetHistory = () => {
     }
     const handlePrev = () => {
         setPage(prev => Math.max(prev - 1, 1))
+    }
+    const fetchAllData = async () => {
+        const { data: { count, items, betPL } }: { data: { count: number, items: any[], betPL: number } } = await axios.get(`/api/history/user?page=1&items_per_page=200&sort_by=created_at&sort_direction=desc`)
+        setCount(count)
+        setBetPL(betPL)
+        setItems(items)
+        for (let i = 2; i <= Math.ceil(count / 200); i++) {
+            const { data: { items } }: { data: { items: any[] } } = await axios.get(`/api/history/user?page=${i}&items_per_page=200&sort_by=created_at&sort_direction=desc`)
+            setItems(prev => ([...prev, ...items]))
+        }
     }
     return (
         <div className='min-h-screen overflow-y-auto' >
@@ -68,10 +86,10 @@ const BetHistory = () => {
                     <div className="data-header">
                         <i className="fa-solid fa-arrow-left align-middle cursor-pointer" onClick={() => window.history.back()}></i>  My games
                     </div>
-                    <div className="data-body overflow-auto" style={{ maxHeight: '70vh' }}>
-                        <div className="table-responsive">
+                    <div className="data-body">
+                        <div className="table-responsive overflow-auto" style={{ maxHeight: '70vh' }}>
                             <table>
-                                <thead>
+                                <thead className='sticky top-0 bg-black'>
                                     <tr>
                                         <th>Round Id</th>
                                         <th>Game</th>
@@ -84,21 +102,17 @@ const BetHistory = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        rows.filter(row =>
-                                            compareDates(new Date(row.created_at), date) &&
-                                            compareProfit(row.profit, filterProfit)
+                                        slicedItems.map((row, i) =>
+                                            <tr key={i}>
+                                                <td>{row.id}</td>
+                                                <td>Jungle Rumble</td>
+                                                <td>{row.bet.toFixed(2)}	</td>
+                                                <td>{row.win.toFixed(2)}</td>
+                                                <td>{row.profit.toFixed(2)}</td>
+                                                <td>{row.created_at}</td>
+                                                <td><a className='cursor-pointer' onClick={() => { navigate(`/detail/${row.id}?token=${token}`) }}>View Detail</a></td>
+                                            </tr>
                                         )
-                                            .map((row, i) =>
-                                                <tr key={i}>
-                                                    <td>{row.id}</td>
-                                                    <td>Jungle Rumble</td>
-                                                    <td>{row.bet.toFixed(2)}	</td>
-                                                    <td>{row.win.toFixed(2)}</td>
-                                                    <td>{row.profit.toFixed(2)}</td>
-                                                    <td>{row.created_at}</td>
-                                                    <td><a className='cursor-pointer' onClick={() => { navigate(`/detail/${row.id}?token=${token}`) }}>View Detail</a></td>
-                                                </tr>
-                                            )
                                     }
                                 </tbody>
                             </table>

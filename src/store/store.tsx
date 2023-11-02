@@ -22,6 +22,7 @@ const StoreProvider = (props: { children: JSX.Element }) => {
         const token: string = urlParams.get('token') || "";
         axios.defaults.headers.common['token'] = token;
         axios.defaults.baseURL = 'https://vacuumplay.com'
+        axios.defaults.timeout = 10000
         axios.post('/api/config').then((response) => {
             setGameParmas(prev => ({
                 ...prev,

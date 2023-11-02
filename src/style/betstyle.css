@@ -7,7 +7,7 @@ body{
 .user-history{
     width: 90%;
     margin: 0 auto;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 .user-history.w-50{
     width: 50%;
@@ -188,8 +188,10 @@ body{
     .user-history .user-data .data-body table thead tr th{
         min-width: 150px;
     }
-    .user-history .user-data .data-body .pagination-row{
-        flex-direction: column;
-        gap: 30px;
+    .user-history .user-data .data-body .pagination-row>div{
+        gap: 0!important;
+    }
+    .user-history .user-data .data-body .pagination-row h4{
+        font-size: small;
     }
 }
