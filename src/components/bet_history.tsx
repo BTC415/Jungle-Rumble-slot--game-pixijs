@@ -27,6 +27,7 @@ const BetHistory = () => {
     const [betPL, setBetPL] = React.useState<number>(0)
     const [filteredItems, setFilteredItems] = React.useState<any[]>([])
     const [slicedItems, setSlicedItems] = React.useState<any[]>([])
+    const [loading, setLoading] = React.useState(true)
     React.useEffect(() => {
         fetchAllData()
     }, [])
@@ -40,7 +41,7 @@ const BetHistory = () => {
         setSlicedItems(filteredItems.slice((page - 1) * rowsPerPage, page * rowsPerPage))
     }, [filteredItems])
     React.useEffect(() => { setCount(filteredItems.length) }, [filteredItems])
-
+    React.useEffect(() => { setPage(1) }, [date, filterProfit])
     const token = useGameParams().token
     React.useEffect(() => {
         setTimeout(() => window.scrollTo(0, 0), 1000)
@@ -53,6 +54,7 @@ const BetHistory = () => {
         setPage(prev => Math.max(prev - 1, 1))
     }
     const fetchAllData = async () => {
+        setLoading(true)
         const { data: { count, items, betPL } }: { data: { count: number, items: any[], betPL: number } } = await axios.get(`/api/history/user?page=1&items_per_page=200&sort_by=created_at&sort_direction=desc`)
         setCount(count)
         setBetPL(betPL)
@@ -61,6 +63,7 @@ const BetHistory = () => {
             const { data: { items } }: { data: { items: any[] } } = await axios.get(`/api/history/user?page=${i}&items_per_page=200&sort_by=created_at&sort_direction=desc`)
             setItems(prev => ([...prev, ...items]))
         }
+        setLoading(false)
     }
     return (
         <div className='min-h-screen overflow-y-auto' >
@@ -86,7 +89,10 @@ const BetHistory = () => {
                     <div className="data-header">
                         <i className="fa-solid fa-arrow-left align-middle cursor-pointer" onClick={() => window.history.back()}></i>  My games
                     </div>
-                    <div className="data-body">
+                    <div className="data-body relative">
+                        <div className={`${loading ? "flex" : "hidden"} justify-center items-center absolute top-0 w-full h-full z-10 bg-black/50`}>
+                            <img src="/assets/res/loading.gif" alt="loading..." width={120} height={120} />
+                        </div>
                         <div className="table-responsive overflow-auto" style={{ maxHeight: '70vh' }}>
                             <table>
                                 <thead className='sticky top-0 bg-black'>
