@@ -1210,6 +1210,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 tweenTo(game_message_text_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
                 game_global_vars.running = false;
                 game_global_vars.wonRes = null;
+                adjust_eventmode_arr.forEach(item => item.eventMode = 'static')
                 // reelsComplete()
                 return
             }
