@@ -653,15 +653,22 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
 
     const display_win_text = new PIXI.Text('', winTextStyle);
     const game_message_text = new PIXI.Text('', gameMessageTextStyle);
+    const game_message_text_wrapper = new PIXI.Container()
     appStage.addChild(display_win_text)
-    appStage.addChild(game_message_text)
+    appStage.addChild(game_message_text_wrapper)
     display_win_text.anchor.set(0.5)
     display_win_text.position.set(960, 480)
     display_win_text.alpha = 0
 
+    const game_message_text_back = new PIXI.Graphics()
+    game_message_text_wrapper.addChild(game_message_text_back)
+    game_message_text_wrapper.addChild(game_message_text)
+    // game_message_text_back.filters = [new PIXI.BlurFilter(3, 3)]
+    game_message_text_back.lineStyle(0);
+    game_message_text_back.beginFill(0x777777, 0.95).drawRoundedRect(400, 420, 1100, 120, 70);
     game_message_text.anchor.set(0.5)
     game_message_text.position.set(960, 480)
-    game_message_text.alpha = 0
+    game_message_text_wrapper.alpha = 0
 
     const button_wallet_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-wallet-empty.png'))
     button_wallet_sprite.position.set(334, 15)
@@ -677,6 +684,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     })
 
     const button_bet_sprite = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-bet.png'))
+
     button_bet_sprite.position.set(550, 10)
     backgroundFooterSpriteChildrenWrapper.addChild(button_bet_sprite)
     button_bet_sprite.eventMode = 'static';
@@ -1070,13 +1078,15 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 const won_line_count = Object.keys(game_global_vars.wonRes.gameable.wins.lines).length
                 setTimeout(() => {
                     startPlay()
-                }, won_line_count * 3000)
+                }, won_line_count * 2100)
             } else {
                 startPlay()
             }
         }
         if (game_global_vars.auto_spin_val === 0) {
-            button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = button_mobile_setting.eventMode = 'static'
+
+            //! adjust eventmode
+            adjust_eventmode_arr.forEach(item => item.eventMode = 'static')
         }
 
     }
@@ -1130,7 +1140,8 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             mobile_win_hold_spin_text_upper.text = "Hold spin"
             mobile_win_hold_spin_text_down.text = ""
         }
-        button_bet_sprite.eventMode = bline_inc_sprite.eventMode = bline_dec_sprite.eventMode = bet_up_sprite.eventMode = bet_down_sprite.eventMode = info_at_statusbarSprite.eventMode = setting_at_status_sprite.eventMode = button_wallet_sprite.eventMode = button_mobile_chip.eventMode = button_mobile_H.eventMode = button_bline_sprite.eventMode = button_mobile_setting.eventMode = 'none'
+        //! adjust eventmode
+        adjust_eventmode_arr.forEach(item => item.eventMode = 'none')
         game_global_vars.cur_bet_val = parseInt(bet_text.text)
         const scale = app.screen.width > app.screen.height * critical_ratio ? 1 : 2
         if (info_dialog_wrapper.alpha === 1) {
@@ -1140,8 +1151,8 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         if (display_win_text.alpha === 1) {
             tweenTo(display_win_text, 'alpha', 1, 0, 500, backout(1), null, null)
         }
-        if (game_message_text.alpha === 1) {
-            tweenTo(game_message_text, 'alpha', 1, 0, 500, backout(1), null, null)
+        if (game_message_text_wrapper.alpha === 1) {
+            tweenTo(game_message_text_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
         }
 
         if (setting_modal_wrapper.position.x === 0) {
@@ -1196,7 +1207,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             if (!status) {
                 game_message_text.text = message
                 allTweenings.splice(0)
-                tweenTo(game_message_text, 'alpha', 0, 1, 500, backout(1), null, null)
+                tweenTo(game_message_text_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
                 game_global_vars.running = false;
                 game_global_vars.wonRes = null;
                 // reelsComplete()
@@ -1224,12 +1235,14 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         } catch (error) {
             game_message_text.text = "Unexpected Error"
             allTweenings.splice(0)
-            tweenTo(game_message_text, 'alpha', 0, 1, 500, backout(1), null, null)
+            tweenTo(game_message_text_wrapper, 'alpha', 0, 1, 500, backout(1), null, null)
             game_global_vars.running = false;
             game_global_vars.wonRes = null;
+            adjust_eventmode_arr.forEach(item => item.eventMode = 'static')
         }
 
     }
+    const adjust_eventmode_arr = [button_bet_sprite, bline_inc_sprite, bline_dec_sprite, bet_up_sprite, bet_down_sprite, info_at_statusbarSprite, setting_at_status_sprite, button_wallet_sprite, button_mobile_chip, button_mobile_H, button_bline_sprite, button_mobile_setting]
     app.ticker.add(() => {
         for (let i = 0; i < reels.length; i++) {
             const r = reels[i];
