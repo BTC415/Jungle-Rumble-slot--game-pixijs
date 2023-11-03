@@ -440,6 +440,9 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
             close_button_sprite.eventMode = 'none'
         }
+        if (game_message_text_wrapper.alpha === 1) {
+            tweenTo(game_message_text_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
+        }
         if (setting_modal_wrapper.x === 0) {
             tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null)
             tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
