@@ -208,6 +208,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             card_backs.push(cardBackSprite)
             cardSprite.addChild(cardSymbolWrapperSprite)
             cardSprite.y = App_Dimension.cardHeight * j
+            if (j === 4) cardSprite.alpha = 0
             reel.addChild(cardSprite)
             reelItem.animated_symbols.push(cardSymbolWrapperSprite)
             reelItem.url_ids.push(url_id)
