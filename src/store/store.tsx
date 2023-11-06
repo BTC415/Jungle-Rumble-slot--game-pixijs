@@ -2,8 +2,10 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import AccessDenied from "../components/access_denied";
 import axios from "axios";
 import { gameParamsType, initialPrams, initialValue, storeType } from "./types";
+
 export const globalContext = createContext<storeType>(initialValue);
 const StoreProvider = (props: { children: JSX.Element }) => {
+
     const [content, setContent] = useState(<></>);
     const [gameParams, setGameParmas] = useState<gameParamsType>(initialPrams)
     const authorize = (loggedIn: boolean) => {
@@ -21,7 +23,7 @@ const StoreProvider = (props: { children: JSX.Element }) => {
         const urlParams = new URLSearchParams(window.location.search);
         const token: string = urlParams.get('token') || "";
         axios.defaults.headers.common['token'] = token;
-        axios.defaults.baseURL = 'https://vacuumplay.com'
+        axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
         axios.defaults.timeout = 10000
         axios.post('/api/config').then((response) => {
             setGameParmas(prev => ({

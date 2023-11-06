@@ -1,6 +1,6 @@
 import { PIXI } from './pixi';
 import { App_Dimension, config } from '../config';
-import { critical_ratio } from '../utils/utils';
+import { media_stop_laptop, media_stop_laptopL, media_stop_tablet } from '../utils/utils';
 
 export const app = new PIXI.Application<HTMLCanvasElement>({
   width: config.width,
@@ -29,9 +29,14 @@ export function resizeApp() {
   app.renderer.resize(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
   // app.renderer.resolution = window.devicePixelRatio;
   let APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height)
-  if (app.screen.width < app.screen.height * critical_ratio) {
+  if (app.screen.width < app.screen.height * media_stop_tablet) {
     APP_SCALE *= 1.64
+  } else if (app.screen.width < app.screen.height * media_stop_laptop) {
+    APP_SCALE *= 1.2
+  } else if (app.screen.width < app.screen.height * media_stop_laptopL) {
+    APP_SCALE *= 1.2
   }
+  
   appStage.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
   appStage.y = (app.screen.height - App_Dimension.height * APP_SCALE) / 2
   appStage.scale.set(APP_SCALE)
