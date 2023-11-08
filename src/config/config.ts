@@ -23,5 +23,6 @@ export const game_global_vars: game_global_vars_type = {
     [null,null,null],
     [null,null,null],
     [null,null,null],
-  ]
+  ],
+  pf_hash:"",
 }

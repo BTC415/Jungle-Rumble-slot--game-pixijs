@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGameParams } from '../store/store';
 import axios from 'axios';
 import '../style/betstyle.css';
+import { getUTCTimefromIndiaTime } from '../utils/utils';
 function compareDates(date1: Date, date2: Date | null) {
     if (!date2) return true
     date1.setHours(0, 0, 0, 0);
@@ -115,7 +116,16 @@ const BetHistory = () => {
                                                 <td>{row.bet.toFixed(2)}	</td>
                                                 <td>{row.win.toFixed(2)}</td>
                                                 <td>{row.profit.toFixed(2)}</td>
-                                                <td>{row.created_at}</td>
+                                                <td>{
+                                                    getUTCTimefromIndiaTime(row.created_at as string).toLocaleString("sv-SE", {
+                                                        year: "numeric",
+                                                        month: "2-digit",
+                                                        day: "2-digit",
+                                                        hour: "2-digit",
+                                                        minute: "2-digit",
+                                                        second: "2-digit",
+                                                    })//.replace(",", "")
+                                                }</td>
                                                 <td><a className='cursor-pointer' onClick={() => { navigate(`/detail/${row.id}?token=${token}`) }}>View Detail</a></td>
                                             </tr>
                                         )

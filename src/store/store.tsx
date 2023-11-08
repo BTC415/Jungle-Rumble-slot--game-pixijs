@@ -7,7 +7,7 @@ export const globalContext = createContext<storeType>(initialValue);
 const StoreProvider = (props: { children: JSX.Element }) => {
 
     const [content, setContent] = useState(<></>);
-    const [gameParams, setGameParmas] = useState<gameParamsType>(initialPrams)
+    const [gameParams, setGameParams] = useState<gameParamsType>(initialPrams)
     const authorize = (loggedIn: boolean) => {
         if (loggedIn) {
             setContent(props.children);
@@ -24,11 +24,11 @@ const StoreProvider = (props: { children: JSX.Element }) => {
         const token: string = urlParams.get('token') || "";
         axios.defaults.headers.common['token'] = token;
         axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
-        axios.defaults.timeout = 10000
+        axios.defaults.timeout = 20000
         axios.post('/api/config').then((response) => {
-            setGameParmas(prev => ({
+            setGameParams(prev => ({
                 ...prev,
-                balance: response.data.data.user.balance,
+                balance: response.data.data.user.account.balance,
                 token: token,
             }))
             authorize(true)
@@ -41,7 +41,7 @@ const StoreProvider = (props: { children: JSX.Element }) => {
             game_package_id: "slots",
             client_seed: Math.ceil(Math.random() * 99999999)
         }).then(({ data: { hash } }: { data: { hash: string } }) => {
-            setGameParmas(prev => ({ ...prev, hash }))
+            setGameParams(prev => ({ ...prev, hash }))
         })
     }, []);
     return (

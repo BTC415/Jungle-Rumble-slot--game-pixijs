@@ -11,7 +11,7 @@ ReactDOM.createRoot(rootElement).render(
   <StoreProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/">
+        <Route path="/jrsl">
           <Route index element={<GamePIXI />} />
           <Route path="show-history" element={<BetHistory />} />
           <Route path="detail/:id" element={<Detail />} />

@@ -16,6 +16,7 @@ import { AdjustmentFilter } from '@pixi/filter-adjustment';
 
 
 const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) => {
+    game_global_vars.pf_hash = gameParams.hash
     Global_Vars.loaded = true;
     appStage.removeChildren();
     playSound('bg')
@@ -1204,9 +1205,9 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         //     client_seed: Math.ceil(Math.random() * 99999999)
         // })
         try {
-            let hash = gameParams.hash
+            let hash = game_global_vars.pf_hash
             let { data: { status, message } } = await axios.post('/api/games/slots/play/verify', {
-                "hash": gameParams.hash,//hash,//
+                "hash": hash,//hash,//
                 "bet": parseInt(bet_text.text),
                 "lines": parseInt(bline_val_text.text),
                 "variation": 10,
@@ -1245,6 +1246,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 "variation": 10,
             })
             game_global_vars.wonRes = wonRes
+            game_global_vars.pf_hash=wonRes.pf_game.hash
             console.log(wonRes)
 
 

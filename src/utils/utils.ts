@@ -151,3 +151,29 @@ export const animateReels = (reels: IReel[], reelsComplete: () => Promise<void>)
         tweenTo(r, 'position', r.position % r.animated_symbols.length, target, time, backout(1.03), null, i === reels.length - 1 ? reelsComplete : null, true);
     }
 }
+export const getUTCTimefromIndiaTime: (timeString: string) => Date = (timeString: string) => {
+    // const timeString = '2023-11-08 16:37:44';
+    const modifiedTimeString = timeString.replace(' ', 'T');
+
+    // Create a new Date object from the modified time string
+    const date = new Date(modifiedTimeString);
+
+    // Get the individual components of the date in local time
+    // const year = date.getFullYear();
+    // const month = date.getMonth();
+    // const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    // const seconds = date.getSeconds();
+
+    // Apply the GMT offset
+    date.setHours(hours - 5);// ! Indian Server Time Zone GMT +5:30
+    date.setMinutes(minutes - 30 - date.getTimezoneOffset());
+
+    // Get the UTC time in milliseconds
+    // const utcTime = Date.UTC(year, month, day, date.getHours(), date.getMinutes(), seconds);
+
+    // console.log(utcTime);
+    return date;
+
+}
