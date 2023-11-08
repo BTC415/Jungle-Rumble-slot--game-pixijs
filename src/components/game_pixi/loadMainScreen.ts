@@ -113,7 +113,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         show_dialog(info_dialog_wrapper, close_button_sprite)
     })
     button_mobile_wallet.on('pointerdown', () => {
-        navigate(`/show-history?token=${gameParams.token}`)
+        navigate(`/jrsl/show-history?token=${gameParams.token}`)
     })
     button_mobile_setting.on('pointerdown', () => {
         setting_sprite_on_pointerdown()
@@ -680,7 +680,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     button_wallet_sprite.eventMode = 'static';
     button_wallet_sprite.cursor = 'pointer';
     button_wallet_sprite.on('pointerdown', () => {
-        navigate(`/show-history?token=${gameParams.token}`)
+        navigate(`/jrsl/show-history?token=${gameParams.token}`)
     }).on('pointerover', () => {
         button_wallet_sprite.texture = PIXI.Texture.from('/assets/image/button-wallet.png')
     }).on('pointerout', () => {
