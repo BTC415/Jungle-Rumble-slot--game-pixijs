@@ -1210,7 +1210,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 "bet": parseInt(bet_text.text),
                 "lines": parseInt(bline_val_text.text),
                 "variation": 10,
-                "slot_type": "fruits"
+                "slot_type": "jungle-rumble"
             })
             if (!status) {
                 const { data: { hash: _hash } } = await axios.post('/api/user/games/create', {
@@ -1222,7 +1222,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                     "bet": parseInt(bet_text.text),
                     "lines": parseInt(bline_val_text.text),
                     "variation": 10,
-                    "slot_type": "fruits"
+                    "slot_type": "jungle-rumble"
                 })
                 status = _status
                 message = _message
