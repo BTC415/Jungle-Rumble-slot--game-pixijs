@@ -3,8 +3,8 @@ import { loadingTextStyle } from "../config";
 
 const loadingText = new PIXI.Text(`Loading...`, loadingTextStyle);
 loadingText.anchor.set(0.5)
-loadingText.scale.set(app.screen.width > app.screen.height ? 1 : 2)
-loadingText.position.set(980, 500)
+loadingText.scale.set(app.screen.width > app.screen.height ? 1.5 : 2)
+loadingText.position.set(980, 550)
 const loadingSpriteBackSprite = new PIXI.Graphics()
 appStage.addChild(loadingSpriteBackSprite)
 loadingSpriteBackSprite.lineStyle(0);
@@ -20,9 +20,9 @@ PIXI.Assets.load(['/assets/image/loading.json']).then(() => {
   const loadingSprite = new PIXI.AnimatedSprite(frames);
   loadingSprite.animationSpeed = 0.5;
   loadingSprite.anchor.set(0.5)
-  loadingSprite.scale.set(app.screen.width > app.screen.height ? 1 : 2)
+  loadingSprite.scale.set(app.screen.width > app.screen.height ? 2 : 3)
   loadingSprite.play();
-  loadingSprite.position.set(970, 430)
+  loadingSprite.position.set(970, 550)
   appStage.addChild(loadingSprite);
 });
 PIXI.Assets.load(['/assets/image/loading-bar-anim.json', '/assets/image/init-bg.png']).then(() => {
@@ -46,11 +46,14 @@ PIXI.Assets.load(['/assets/image/loading-bar-anim.json', '/assets/image/init-bg.
   splashContainer.x = 680
   splashContainer.y = 300
   splashSprite.anchor.set(0.5)
-  splashSprite.position.set(280, 220)
+  splashSprite.scale.set(1.5)
+
+  splashSprite.position.set(280, 200)
   splashContainer.addChild(splashSprite)
   splashContainer.addChild(loadingSprite)
-  loadingSprite.position.set(60,330)
-  loadingSprite.scale.set(1.5)
+  loadingSprite.position.set(280,400)
+  loadingSprite.anchor.set(0.5)
+  loadingSprite.scale.set(2)
   appStage.removeChildren();
   appStage.addChild(splashContainer);
 });

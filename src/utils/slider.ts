@@ -1,7 +1,7 @@
 // import { Slider } from "@pixi/ui"
 import { FederatedPointerEvent } from "pixi.js";
 import { PIXI, app } from "../renderer";
-import { media_stop_tablet } from "./utils";
+import { media_stop_mobile } from "./utils";
 import { App_Dimension, game_global_vars } from "../config";
 let dragTarget: {
     type: "slider_bar" | "scroll_content",
@@ -20,7 +20,7 @@ function onDragMove(event: FederatedPointerEvent) {
             onChangeCallback(dragTarget.sprite.x / 3)
         }
     } else if (dragTarget?.type === "scroll_content") {
-        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * media_stop_tablet) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
+        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * media_stop_mobile) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
         const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height) * info_dialog_wrapper_scale_ratio
 
         const cur_pos: PIXI.Point = event.global;
@@ -73,7 +73,7 @@ export const getInfoContentSprite = (scroll_bar_sprite: PIXI.Sprite) => {
     info_content_sprite.eventMode = 'static'
     info_content_sprite.cursor = 'pointer'
     info_content_sprite.on('pointerdown', (event) => {
-        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * media_stop_tablet) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
+        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * media_stop_mobile) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
         const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height) * info_dialog_wrapper_scale_ratio
 
         app.stage.eventMode = 'static';

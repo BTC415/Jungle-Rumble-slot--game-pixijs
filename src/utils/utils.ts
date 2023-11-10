@@ -2,9 +2,9 @@ import { IReel, slotAnimateUrlType } from "../@types";
 import { PIXI, appStage } from "../renderer";
 import { sound } from '@pixi/sound';
 import { backout, reelTweenings, tweenTo } from "./urls";
-export const media_stop_tablet = 0.75
-export const media_stop_laptop = 1
-export const media_stop_laptopL = 1.3
+export const media_stop_mobile = 0.75
+export const media_stop_tablet = 0.93
+export const media_stop_desktop_sm = 1.2
 export const fire_animate = () => {
     const frames = [];
     for (let i = 0; i < 300; i++) {

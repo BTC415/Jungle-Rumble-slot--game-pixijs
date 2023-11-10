@@ -8,7 +8,7 @@ import keyboard from "../../utils/keyboard";
 import { getReelContainerMask } from "../../utils/mask";
 import { getInfoContentSprite, getSliderSprite } from "../../utils/slider";
 import { backout, rectout, show_dialog, slotAnimateUrls, slotReels, tweenTo, allTweenings, reelTweenings } from "../../utils/urls";
-import { animateReels, bubble_animate, calculateScale, media_stop_tablet, fire_animate, gen_autospin_item, gen_card_animated_sprite, playSound, setVolume, stopSound, media_stop_laptop } from "../../utils/utils";
+import { animateReels, bubble_animate, calculateScale, media_stop_mobile, fire_animate, gen_autospin_item, gen_card_animated_sprite, playSound, setVolume, stopSound, media_stop_tablet, media_stop_desktop_sm } from "../../utils/utils";
 import { gameParamsType } from "../../store/types";
 import axios from "axios";
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
@@ -73,7 +73,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     bg_mobile_win_hold_spin_text.beginFill(0xffffff)
         .drawRoundedRect(-2, -2, 204, 104, 17)
     bg_mobile_win_hold_spin_text.beginFill(0x222222)
-        .drawRoundedRect(0, 0, 200, 100, 15)
+        .drawRoundedRect(2, 2, 196, 96, 13)
 
 
     const mobile_background_footer_sprite = new PIXI.Container()
@@ -89,9 +89,6 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     const button_mobile_wallet = new PIXI.Sprite(PIXI.Texture.from('/assets/image/button-mobile-wallet.png'))
     mobile_background_header_sprite.addChild(button_mobile_i)
     mobile_background_header_sprite.addChild(button_mobile_wallet)
-    button_mobile_wallet.position.set(50, 50)
-    button_mobile_i.position.set(625, 50)
-
     mobile_background_footer_sprite.addChild(button_mobile_setting)
     mobile_background_footer_sprite.addChild(button_mobile_A)
     mobile_background_footer_sprite.addChild(button_mobile_reload)
@@ -110,10 +107,12 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     button_mobile_i.on('pointerdown', () => {
         info_content_sprite.texture = PIXI.Texture.from('/assets/image/info-content-mobile.png')
         display_win_text.alpha = 0
+        info_content_sprite.y = 0        
+        scroll_bar_sprite.y = scroll_bar_init_y
         show_dialog(info_dialog_wrapper, close_button_sprite)
     })
     button_mobile_wallet.on('pointerdown', () => {
-        navigate(`/show-history?token=${gameParams.token}`)
+        navigate(`/jrsl/show-history?token=${gameParams.token}`)
     })
     button_mobile_setting.on('pointerdown', () => {
         setting_sprite_on_pointerdown()
@@ -288,7 +287,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     // });
     // appStage.addChild(scrollBox);
     function handleMouseWheel(e: WheelEvent) {
-        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * media_stop_tablet) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
+        const info_dialog_wrapper_scale_ratio = (app.screen.width > app.screen.height * media_stop_mobile) ? 1 : game_global_vars.info_dialog_wrapper_scale_ratio
         const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height) * info_dialog_wrapper_scale_ratio
         const deltaY = e.deltaY;
         info_content_sprite.y -= deltaY * 0.5;
@@ -318,6 +317,8 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     info_at_statusbarSprite.on('pointerdown', () => {
         info_content_sprite.texture = PIXI.Texture.from('/assets/image/info-content.png')
         display_win_text.alpha = 0
+        info_content_sprite.y = 0
+        scroll_bar_sprite.y = scroll_bar_init_y
         show_dialog(info_dialog_wrapper, close_button_sprite)
     })
     status_bar_wrapper.on('pointerover', () => {
@@ -528,7 +529,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             button_auto_spin_sprite.texture = PIXI.Texture.from('/assets/image/button-auto-spin-empty.png')
             button_mobile_A.texture = PIXI.Texture.from('/assets/image/button-mobile-A.png')
         } else {
-            const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+            const scale = app.screen.width > app.screen.height * media_stop_mobile ? 1 : 2
             if (auto_spin_wrapper.scale.x === 0) {
                 tweenTo(auto_spin_wrapper.scale, 'x', 0, scale, 500, backout(1), null, null)
                 tweenTo(auto_spin_wrapper.scale, 'y', 0, scale, 500, backout(1), null, null)
@@ -538,7 +539,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 tweenTo(auto_spin_wrapper.scale, 'y', scale, 0, 500, backout(1), null, null)
             }
         }
-        const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+        const scale = app.screen.width > app.screen.height * media_stop_mobile ? 1 : 2
         if (setting_modal_wrapper.position.x === 0) {
             tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null);
             tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
@@ -591,7 +592,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     bg_setting_list_sprite.cursor = 'pointer';
     bg_setting_list_sprite.on('pointerdown', (event) => {
         if (event.target === bg_setting_list_sprite) {
-            const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+            const scale = app.screen.width > app.screen.height * media_stop_mobile ? 1 : 2
             tweenTo(settings_list_sprite.scale, 'x', scale, 0, 200, backout(1), null, null)
             tweenTo(settings_list_sprite.scale, 'y', scale, 0, 200, backout(1), null, null)
             tweenTo(settings_list_sprite, 'alpha', 1, 0, 200, backout(1), null, null)
@@ -625,7 +626,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             bet_text.text = setting_item_text.text
             total_bet_text.text = String(parseInt(bline_val_text.text) * parseInt(setting_item_text.text))
 
-            const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+            const scale = app.screen.width > app.screen.height * media_stop_mobile ? 1 : 2
             tweenTo(settings_list_sprite.scale, 'x', scale, 0, 200, backout(1), null, null)
             tweenTo(settings_list_sprite.scale, 'y', scale, 0, 200, backout(1), null, null)
             tweenTo(settings_list_sprite, 'alpha', 1, 0, 200, backout(1), null, null)
@@ -680,7 +681,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     button_wallet_sprite.eventMode = 'static';
     button_wallet_sprite.cursor = 'pointer';
     button_wallet_sprite.on('pointerdown', () => {
-        navigate(`/show-history?token=${gameParams.token}`)
+        navigate(`/jrsl/show-history?token=${gameParams.token}`)
     }).on('pointerover', () => {
         button_wallet_sprite.texture = PIXI.Texture.from('/assets/image/button-wallet.png')
     }).on('pointerout', () => {
@@ -695,7 +696,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     button_bet_sprite.cursor = 'pointer';
     const button_bet_sprite_on_pointerdown = () => {
 
-        const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+        const scale = app.screen.width > app.screen.height * media_stop_desktop_sm ? 1 : 2
         if (setting_modal_wrapper.position.x === 0) {
             tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null);
             tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
@@ -766,7 +767,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
     button_bline_sprite.cursor = 'pointer';
     const button_bline_sprite_on_pointerdown = () => {
 
-        const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+        const scale = app.screen.width > app.screen.height * media_stop_desktop_sm ? 1 : 1.5
         if (setting_modal_wrapper.position.x === 0) {
             tweenTo(setting_modal_wrapper, 'x', 0, 2000, 500, backout(1), null, null);
             tweenTo(setting_modal_wrapper, 'alpha', 1, 0, 500, backout(1), null, null);
@@ -879,7 +880,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         bline_item_sprite.on('pointerdown', () => {
             bline_val_text.text = bline_item_text.text
             total_bet_text.text = String(parseInt(bline_val_text.text) * parseInt(bet_text.text))
-            const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 1.5
+            const scale = app.screen.width > app.screen.height * media_stop_mobile ? 1 : 1.5
             tweenTo(bline_list_sprite.scale, 'x', scale, 0, 500, backout(1), null, null)
             tweenTo(bline_list_sprite.scale, 'y', scale, 0, 500, backout(1), null, null)
 
@@ -904,7 +905,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         const APP_SCALE = Math.min(app.screen.width / App_Dimension.width, app.screen.height / App_Dimension.height)
         // info_dialog_wrapper.y = (app.screen.height - App_Dimension.height * APP_SCALE) / 2
         backgroundFooterSprite.scale.set(APP_SCALE)
-        const control_pos_web = (app.screen.width < app.screen.height * media_stop_laptop) ? backgroundFooterSprite.height : 0
+        const control_pos_web = (app.screen.width < app.screen.height * media_stop_desktop_sm) ? backgroundFooterSprite.height : 0
         backgroundFooterSprite.position.set((app.screen.width - (App_Dimension.width + 100) * APP_SCALE) / 2, app.screen.height - backgroundFooterSprite.height + control_pos_web)
         // ! backgroundFooterSprite.position.set(-100, app.screen.height * (1 + APP_SCALE) / 2 / APP_SCALE - backgroundFooterSprite.height)
         mobile_background_header_sprite.scale.set(app.screen.width / 750)
@@ -919,44 +920,28 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         bline_val_text.position.set(0, 0)
         bline_val_text.scale.set(1)
 
-        const control_pos_mobile = (app.screen.width >= app.screen.height * media_stop_laptop) ? mobile_background_footer_sprite.height * 100 : 0
+        const control_pos_mobile = (app.screen.width >= app.screen.height * media_stop_desktop_sm) ? mobile_background_footer_sprite.height * 100 : 0
         mobile_background_footer_sprite.position.set((app.screen.width - mobile_background_footer_sprite.width) / 2, app.screen.height - mobile_background_footer_sprite.height + control_pos_mobile)
         mobile_background_header_sprite.position.set((app.screen.width - App_Dimension.width * APP_SCALE) / 2, -control_pos_mobile)
-        if (app.screen.width < app.screen.height * media_stop_laptop) {
-            info_dialog_wrapper.scale.set(APP_SCALE * game_global_vars.info_dialog_wrapper_scale_ratio)
-            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE * game_global_vars.info_dialog_wrapper_scale_ratio) / 2
-
-            // bet_text_static.position.set(665 + 100, 36 - 530)
-            // bet_text.position.set(665 + 250, 80 - 575)
-            // bet_text_static.scale.set(2)
-            // bet_text.scale.set(2)
-            // bline_static_text.position.set(-550, -50 - 525)
-            // bline_static_text.scale.set(2)
-            // bline_val_text.position.set(-450, -575)
-            // bline_val_text.scale.set(2)
-
+        if (app.screen.width < app.screen.height * media_stop_desktop_sm) {
             settings_list_sprite.position.set(1400, -350)
             auto_spin_wrapper.position.set(1000, -400)
             auto_spin_val_text_sprite.position.set(540, -360)
             auto_spin_val_text_sprite.scale.set(2)
             bline_list_sprite.position.set(1950, -350)
-            // bline_list_sprite.scale.set(1.5)
             setting_modal.scale.set(1.4)
         } else {
-            info_dialog_wrapper.scale.set(APP_SCALE)
-            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
-            /*
-             */
             settings_list_sprite.position.set(670, 0)
             auto_spin_wrapper.position.set(1500, 0)
             auto_spin_val_text_sprite.position.set(1480, 15)
             auto_spin_val_text_sprite.scale.set(1)
             bline_list_sprite.position.set(1850, 0)
-            // bline_list_sprite.scale.set(1)
             setting_modal.scale.set(1)
         }
 
-        if (app.screen.width < app.screen.height * media_stop_tablet) {
+        if (app.screen.width < app.screen.height * media_stop_mobile) {
+            info_dialog_wrapper.scale.set(APP_SCALE * game_global_vars.info_dialog_wrapper_scale_ratio)
+            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE * game_global_vars.info_dialog_wrapper_scale_ratio) / 2
             balance_text.position.set(230 - 100, 70 - 600)
             balance_text.scale.set(2)
             balance_text_static.position.set(280 - 40, 85 - 680)
@@ -967,18 +952,47 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             total_bet_text_static.scale.set(2)
             mobile_win_hold_spin_text_wrapper.position.set(750, -700)
             mobile_win_hold_spin_text_wrapper.scale.set(2)
-        } else if (app.screen.width < app.screen.height * media_stop_laptop) {
-            balance_text.position.set(250 - 100, 70 - 400)
+            button_mobile_i.scale.set(1)
+            button_mobile_wallet.scale.set(1)
+            button_mobile_wallet.position.set(50, 50)
+            button_mobile_i.position.set(625, 50)
+        } else if (app.screen.width < app.screen.height * media_stop_tablet) {
+            info_dialog_wrapper.scale.set(APP_SCALE)
+            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
+            balance_text.position.set(250 - 100, -400)
             balance_text.scale.set(1.5)
-            balance_text_static.position.set(280 - 40, 85 - 480)
+            balance_text_static.position.set(280 - 40, 15 - 480)
             balance_text_static.scale.set(1.5)
-            total_bet_text.position.set(1650, 80 - 375)
+            total_bet_text.position.set(1650, 10 - 375)
             total_bet_text.scale.set(1.5)
-            total_bet_text_static.position.set(1650, 80 - 475)
+            total_bet_text_static.position.set(1650, 10 - 475)
             total_bet_text_static.scale.set(1.5)
-            mobile_win_hold_spin_text_wrapper.position.set(800, -500)
+            mobile_win_hold_spin_text_wrapper.position.set(800, -570)
             mobile_win_hold_spin_text_wrapper.scale.set(1.5)
+            button_mobile_i.scale.set(0.8)
+            button_mobile_wallet.scale.set(0.8)
+            button_mobile_wallet.position.set(50, 50)
+            button_mobile_i.position.set(650, 50)
+        } else if (app.screen.width < app.screen.height * media_stop_desktop_sm) {
+            info_dialog_wrapper.scale.set(APP_SCALE)
+            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
+            balance_text.position.set(250 - 150, -200)
+            balance_text.scale.set(1.5)
+            balance_text_static.position.set(230 - 40, 15 - 280)
+            balance_text_static.scale.set(1.5)
+            total_bet_text.position.set(1700, 10 - 175)
+            total_bet_text.scale.set(1.5)
+            total_bet_text_static.position.set(1700, 10 - 275)
+            total_bet_text_static.scale.set(1.5)
+            mobile_win_hold_spin_text_wrapper.position.set(850, -400)
+            mobile_win_hold_spin_text_wrapper.scale.set(1)
+            button_mobile_i.scale.set(0.5)
+            button_mobile_wallet.scale.set(0.5)
+            button_mobile_wallet.position.set(70, 20)
+            button_mobile_i.position.set(650, 20)
         } else {
+            info_dialog_wrapper.scale.set(APP_SCALE)
+            info_dialog_wrapper.x = (app.screen.width - App_Dimension.width * APP_SCALE) / 2
             balance_text.position.set(360, 70)
             balance_text.scale.set(1)
             balance_text_static.position.set(280, 85)
@@ -988,6 +1002,11 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
             total_bet_text_static.position.set(1150, 80)
             total_bet_text_static.scale.set(1)
             mobile_win_hold_spin_text_wrapper.position.set(750, 1650)
+            mobile_win_hold_spin_text_wrapper.scale.set(1.5)
+            button_mobile_i.scale.set(0.5)
+            button_mobile_wallet.scale.set(0.5)
+            button_mobile_wallet.position.set(70, 20)
+            button_mobile_i.position.set(650, 20)
         }
 
     })()
@@ -1168,7 +1187,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
         //! adjust eventmode
         adjust_eventmode_arr.forEach(item => item.eventMode = 'none')
         game_global_vars.cur_bet_val = parseInt(bet_text.text)
-        const scale = app.screen.width > app.screen.height * media_stop_tablet ? 1 : 2
+        const scale = app.screen.width > app.screen.height * media_stop_mobile ? 1 : 2
         if (info_dialog_wrapper.alpha === 1) {
             tweenTo(info_dialog_wrapper, 'alpha', 1, 0, 500, backout(1), null, null)
             close_button_sprite.eventMode = 'none'
@@ -1246,7 +1265,7 @@ const loadMainScreen = (navigate: NavigateFunction, gameParams: gameParamsType) 
                 "variation": 10,
             })
             game_global_vars.wonRes = wonRes
-            game_global_vars.pf_hash=wonRes.pf_game.hash
+            game_global_vars.pf_hash = wonRes.pf_game.hash
             console.log(wonRes)
 
 

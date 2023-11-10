@@ -194,6 +194,9 @@ export function backout(b: number) {
     // return (t: any) => (t * t * ((amount + 1) * t + amount));
     return (t: number) => (Math.sin(b * Math.PI * t - Math.PI / 2) + 1) / (Math.sin(b * Math.PI - Math.PI / 2) + 1)
 }
+export function interpolate(x: number, x1: number, x2: number, y1: number, y2: number) {
+    return Math.max(Math.min(y1, y2), Math.min(Math.max(y1, y2), (y2 - y1) * (x - x1) / (x2 - x1) + y1))
+}
 export function fadeInOut() {
     return (t: number) => 1 - Math.sin(t * Math.PI)
 }

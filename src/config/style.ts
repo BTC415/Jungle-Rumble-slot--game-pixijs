@@ -2,7 +2,7 @@ import { PIXI } from "../renderer";
 
 export const loadingTextStyle = new PIXI.TextStyle({
     fontFamily: 'Arial',
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
     fill: ['#ffffff', '#00ff99'], // gradient
     stroke: '#4a1850',
