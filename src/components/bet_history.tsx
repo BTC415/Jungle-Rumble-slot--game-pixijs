@@ -126,7 +126,7 @@ const BetHistory = () => {
                                                         second: "2-digit",
                                                     })//.replace(",", "")
                                                 }</td>
-                                                <td><a className='cursor-pointer' onClick={() => { navigate(`/srsl/detail/${row.id}?token=${token}`) }}>View Detail</a></td>
+                                                <td><a className='cursor-pointer' onClick={() => { navigate(`/jrsl/detail/${row.id}?token=${token}`) }}>View Detail</a></td>
                                             </tr>
                                         )
                                     }
