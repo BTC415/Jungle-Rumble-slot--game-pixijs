@@ -13,8 +13,8 @@ ReactDOM.createRoot(rootElement).render(
       <Routes>
         <Route path="/jrsl">
           <Route index element={<GamePIXI />} />
-          <Route path="/jrsl/show-history" element={<BetHistory />} />
-          <Route path="/jrsl/detail/:id" element={<Detail />} />
+          <Route path="/show-history" element={<BetHistory />} />
+          <Route path="/detail/:id" element={<Detail />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>
